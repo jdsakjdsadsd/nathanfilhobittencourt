@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manga Transportes - Sua Carga no Campo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --color-primary: #0a4f21; /* Verde Escuro */
+            --color-secondary: #ff7f00; /* Laranja */
+            --color-text-dark: #333;
+            --color-text-light: #fff;
+            --color-background-light: #f5f5f5;
+            --color-background-white: #fff;
+            --color-dark-footer: #181818; /* Novo: Tom mais escuro para o rodapé */
+            --color-footer-text: #ccc;
+            --color-footer-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--color-text-dark);
+            background-color: var(--color-background-light);
+            line-height: 1.6;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header (Estilos Omitidos para Concisão - Mantidos Originais) */
+        .header {
+            padding: 20px 0;
+            background-color: transparent;
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .header-content-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        .logo img { height: 40px; margin-right: 10px; }
+        .logo-manga { font-size: 20px; color: rgb(75, 216, 75); }
+        .logo-transportes { font-size: 12px; font-weight: 400; color: rgb(75, 216, 75); }
+        .nav-menu {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--color-text-light);
+            padding: 10px 15px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .nav-menu a:hover { color: var(--color-secondary); }
+        .cta-button {
+            background-color: var(--color-secondary);
+            color: var(--color-text-light);
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-top: 0; 
+            line-height: 1;
+        }
+        .cta-button:hover { 
+            background-color: #e56d00; 
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .cta-button.menu-cta {
+            background-color: var(--color-secondary);
+            color: var(--color-text-light);
+            padding: 10px 20px;
+            margin-left: 10px;
+            margin-top: 0;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 28px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--color-text-light);
+        }
+        /* Hero Banner, Sobre Nós, Fatos Rápidos, Serviços, Contato (Estilos Omitidos para Concisão - Mantidos Originais) */
+        .hero { position: relative; width: 100%; height: 100vh; overflow: hidden; }
+        .banner-container { position: relative; width: 100%; height: 100%; }
+        .banner-image { width: 100%; height: 100%; object-fit: cover; animation: zoomBanner 12s ease-in-out infinite; }
+        @keyframes zoomBanner { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        .banner-text {
+            position: absolute;
+            top: 40%; left: 0; right: 0;
+            margin: 0 auto;
+            width: 100%; max-width: 1400px;
+            padding: 0 20px;
+            transform: translateY(-50%);
+            color: var(--color-text-light);
+            z-index: 1;
+            opacity: 0;
+            animation: fadeInUp 2s ease forwards 0.5s;
+        }
+        .banner-text-content { max-width: 600px; }
+        @keyframes fadeInUp {
+            from { transform: translateY(calc(-50% + 20px)); opacity: 0; }
+            to { transform: translateY(-50%); opacity: 1; }
+        }
+        .banner-text h1 { font-family: 'Montserrat', sans-serif; font-size: 3rem; font-weight: 700; margin-bottom: 15px; }
+        .banner-text p { font-size: 1.2rem; margin-bottom: 20px; }
+        .banner-container::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            z-index: 0;
+        }
+
+        /* SEÇÃO "SOBRE NÓS" */
+        .about-us-reimagined { padding: 160px 0; background-color: #f8f9fa; overflow: hidden; }
+        .about-content-wrapper { display: flex; justify-content: center; }
+        .about-text-column { background-color: var(--color-background-white); padding: 80px 70px; border-radius: 16px; box-shadow: 0 15px 80px rgba(0,0,0,0.1); width: 100%; max-width: 1100px; }
+        .section-tagline { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--color-secondary); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; font-size: 1rem; }
+        .about-text-column .section-title { font-family: 'Montserrat', sans-serif; font-size: 44px; line-height: 1.3; color: var(--color-primary); margin-bottom: 30px; }
+        .about-text-column p { margin-bottom: 35px; font-size: 1.1rem; color: #444; line-height: 1.8; }
+        .values-list { list-style: none; padding: 0; margin-top: 30px; margin-bottom: 40px; }
+        .values-list li { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 25px; }
+        .value-icon { flex-shrink: 0; width: 55px; height: 55px; background-color: rgba(255, 127, 0, 0.1); color: var(--color-secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; transition: all 0.3s ease; }
+        .values-list li:hover .value-icon { background-color: var(--color-primary); color: var(--color-text-light); transform: scale(1.1); }
+        .value-text h3 { font-family: 'Montserrat', sans-serif; font-size: 1.2rem; color: var(--color-primary); margin-bottom: 5px; }
+        .value-text p { margin-bottom: 0; font-size: 1rem; line-height: 1.6; color: #555; }
+
+        /* SEÇÃO DE FATOS RÁPIDOS */
+        .proof-points { padding: 80px 0; background-color: var(--color-primary); color: var(--color-text-light); text-align: center; }
+        .proof-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+        .proof-item h3 { font-family: 'Montserrat', sans-serif; font-size: 3.5rem; font-weight: 700; color: var(--color-secondary); margin-bottom: 5px; line-height: 1; }
+        .proof-item p { font-size: 1.1rem; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; color: rgba(255, 255, 255, 0.9); }
+
+        /* Seção de Serviços */
+        .services { padding: 100px 0; background: #fff; }
+        .services .section-title { font-family: 'Montserrat', sans-serif; font-size: 42px; margin-bottom: 10px; color: var(--color-primary); text-align: left; }
+        .services .section-subtitle { font-size: 1.1rem; color: #666; margin-bottom: 60px; max-width: 700px; margin-left: auto; margin-right: auto; text-align: center; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        .service-card { background: #fff; border: 1px solid #eee; border-radius: 16px; padding: 40px 25px; transition: all 0.4s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); border-color: var(--color-primary); }
+        .icon-wrapper { width: 80px; height: 80px; margin: 0 auto 25px; background: rgba(10, 79, 33, 0.08); color: var(--color-primary); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 36px; transition: all 0.4s ease; }
+        .service-card:hover .icon-wrapper { background: var(--color-primary); color: #fff; }
+        .service-card h3 { font-family: 'Montserrat', sans-serif; font-size: 22px; color: var(--color-primary); margin-bottom: 15px; }
+        .service-card p { font-size: 0.95rem; color: #555; line-height: 1.5; }
+
+        /* Seção de Contato e Formulário */
+        .contact-section { padding: 100px 0; background-color: var(--color-background-white); }
+        .contact-content { display: flex; justify-content: space-between; gap: 60px; max-width: 1100px; margin: 0 auto; }
+        .contact-info, .contact-form-wrapper { flex: 1; }
+        .contact-info h2 { font-family: 'Montserrat', sans-serif; font-size: 38px; color: var(--color-primary); margin-bottom: 20px; }
+        .contact-info p { font-size: 1.1rem; margin-bottom: 30px; color: #555; }
+        .contact-details { list-style: none; padding: 0; }
+        .contact-details li { display: flex; align-items: center; margin-bottom: 20px; font-size: 1rem; color: var(--color-text-dark); }
+        .contact-details li i { color: var(--color-secondary); font-size: 20px; margin-right: 15px; width: 25px; text-align: center; }
+        .contact-form { background: var(--color-background-light); padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .contact-form label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--color-primary); font-size: 0.95rem; }
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea { width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 6px; font-size: 1rem; transition: border-color 0.3s; }
+        .contact-form input:focus,
+        .contact-form textarea:focus { border-color: var(--color-secondary); outline: none; }
+        .contact-form textarea { resize: vertical; min-height: 120px; }
+        .form-submit-button {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            font-size: 1.1rem;
+        }
+        .form-submit-button:hover { background-color: #083c18; }
+
+        /* -------------------------------------------------------------------------- */
+        /* NOVO RODAPÉ SOFISTICADO/MINIMALISTA */
+        /* -------------------------------------------------------------------------- */
+        .footer-moderno {
+            background-color: var(--color-dark-footer); 
+            color: var(--color-footer-text);
+            padding: 60px 0 0;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            /* 3 colunas, com a primeira (info) maior para destaque */
+            grid-template-columns: 2fr 1fr 1.5fr; 
+            gap: 40px;
+            padding-bottom: 40px;
+        }
+
+        .footer-moderno h3, 
+        .footer-moderno h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--color-text-light); /* Títulos brancos ou tom claro */
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .footer-moderno h3.logo-text {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .footer-moderno h4 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-bottom: 5px; 
+            border-bottom: 2px solid var(--color-secondary); /* Linha de destaque Laranja */
+            display: inline-block;
+        }
+
+        .col-info .slogan-text {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin-bottom: 8px;
+            color: var(--color-text-light);
+        }
+
+        .col-info .description-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Links */
+        .footer-moderno ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-moderno ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-moderno a {
+            color: var(--color-footer-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-moderno a:hover {
+            color: var(--color-secondary);
+        }
+
+        /* Contato */
+        .col-contato .contato-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .col-contato .contato-item i {
+            font-size: 1rem;
+            margin-right: 10px;
+            color: var(--color-secondary);
+            margin-top: 3px; /* Alinhamento visual */
+        }
+
+        .col-contato .contato-item span {
+            color: var(--color-footer-text);
+        }
+
+        /* Redes Sociais */
+        .social-links {
+            margin-top: 25px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            font-size: 1.4rem;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid var(--color-footer-text);
+            color: var(--color-footer-text);
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-dark-footer);
+            border-color: var(--color-secondary);
+            transform: translateY(-2px);
+        }
+
+        /* Direitos Autorais */
+        .footer-copyright {
+            text-align: center;
+            border-top: 1px solid var(--color-footer-border);
+            padding: 20px 0;
+            font-size: 0.8rem;
+            color: white;
+        }
+        /* -------------------------------------------------------------------------- */
+        /* FIM DO NOVO RODAPÉ */
+        /* -------------------------------------------------------------------------- */
+
+        /* Responsividade - Geral (Mantidos Originais) */
+        @media (max-width: 992px) {
+            .banner-text h1 { font-size: 2.2rem; }
+            .about-text-column .section-title { font-size: 36px; }
+            .proof-item h3 { font-size: 2.5rem; }
+            .proof-points { padding: 60px 0; }
+            .contact-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+            /* Responsividade Rodapé Médio */
+            .footer-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+            .col-info {
+                grid-column: 1 / -1; 
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: absolute; top: 80px; right: 0;
+                background: rgba(0,0,0,0.9);
+                flex-direction: column; width: 100%;
+                display: none;
+                align-items: flex-start;
+            }
+            .nav-menu a, .nav-menu .cta-button {
+                width: 100%;
+                padding: 15px 20px;
+                margin: 0;
+                text-align: left;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .nav-menu.active { display: flex; }
+            .menu-toggle { display: block; }
+
+            /* Responsividade Rodapé Pequeno */
+            .footer-grid {
+                grid-template-columns: 1fr; 
+                gap: 30px;
+            }
+            .col-info {
+                grid-column: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner-text h1 { font-size: 1.6rem; }
+            .banner-text p { font-size: 0.9rem; }
+            .cta-button { padding: 10px 20px; font-size: 0.9rem; }
+            .about-us-reimagined { padding: 100px 0; }
+            .about-text-column { padding: 50px 30px; }
+            .about-text-column .section-title { font-size: 28px; }
+            .services .section-title { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="container header-content-wrapper">
+        <div class="logo">
+            <img src="logo.png" alt="Manga Transportes Logo">
+            <div>
+                <div class="logo-manga">MANGA</div>
+                <div class="logo-transportes">TRANSPORTES</div>
+            </div>
+        </div>
+        <button class="menu-toggle" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+        <nav class="nav-menu">
+            <a href="#inicio">Início</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#sobre">Sobre Nós</a>
+            <a href="#contato">Contato</a>
+            <a href="trabalhe-conosco.html" target="_blank">Trabalhe Conosco</a>
+            <a href="https://wa.me/5544984385432" target="_blank" class="cta-button menu-cta">
+                Solicitar Orçamento
+            </a>
+        </nav>
+    </div>
+</header>
+
+<section id="inicio" class="hero">
+    <div class="banner-container">
+        <img src="boasvindas.png" alt="Caminhão da Manga Transportes" class="banner-image">
+        <div class="banner-text">
+            <div class="banner-text-content">
+                <h1>Bem-vindo a Manga Transportes!</h1>
+                <p>Conectando o campo à sua mesa, com agilidade, segurança e responsabilidade.</p>
+                <a href="https://wa.me/5544984385432" target="_blank" class="cta-button">Solicitar Orçamento</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="sobre" class="about-us-reimagined">
+    <div class="container">
+        <div class="about-content-wrapper">
+            <div class="about-text-column">
+                <span class="section-tagline">Desde 2021</span>
+                <h2 class="section-title">Quem somos?</h2>
+                <p>
+                    A <strong>Manga Transportes</strong> nasceu da visão de criar pontes entre o produtor rural e o mercado, oferecendo soluções logísticas que unem tecnologia, segurança e um profundo respeito pelo agronegócio. Cada jornada é um compromisso com a excelência.
+                </p>
+                
+                <ul class="values-list">
+                    <li>
+                        <div class="value-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div class="value-text">
+                            <h3>Segurança Inegociável</h3>
+                            <p>Sua carga e sua equipe transportadas com a máxima responsabilidade.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="value-icon"><i class="fas fa-clock"></i></div>
+                        <div class="value-text">
+                            <h3>Pontualidade Britânica</h3>
+                            <p>Respeitamos sua logística e garantimos entregas sempre no prazo.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="value-icon"><i class="fas fa-leaf"></i></div>
+                        <div class="value-text">
+                            <h3>Operação Sustentável</h3>
+                            <p>Práticas que cuidam do meio ambiente em cada etapa do transporte.</p>
+                        </div>
+                    </li>
+                </ul>
+                <a href="#contato" class="cta-button">Conheça Nossas Soluções</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="proof-points">
+    <div class="container proof-grid">
+        <div class="proof-item">
+            <h3>+3 Anos</h3>
+            <p>De experiência no agronegócio</p>
+        </div>
+        <div class="proof-item">
+            <h3>98%</h3>
+            <p>De satisfação dos usuários</p>
+        </div>
+        <div class="proof-item">
+            <h3>+100</h3>
+            <p>Clientes pelo Brasil todo</p>
+        </div>
+        <div class="proof-item">
+            <h3>OTIF 95%</h3>
+            <p>On-Time In-Full (Entregas no Prazo)</p>
+        </div>
+    </div>
+</section>
+
+<section id="servicos" class="services">
+    <div class="container">
+        <h2 class="section-title">Nossos Serviços</h2>
+        <p class="section-subtitle">Soluções completas em transporte para atender às necessidades do campo, da indústria e dos eventos.</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="icon-wrapper">
+                    <i class="fas fa-people-carry"></i>
+                </div>
+                <h3>Transporte de Trabalhadores</h3>
+                <p>Logística eficiente para a sua colheita, garantindo que sua equipe chegue com segurança e pontualidade.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon-wrapper">
+                    <i class="fas fa-warehouse"></i>
+                </div>
+                <h3>Fretamento para Cooperativas</h3>
+                <p>Transporte seguro de insumos e produtos, apoiando a produção e a distribuição das cooperativas.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon-wrapper">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3>Transporte para Eventos</h3>
+                <p>Serviço dedicado para feiras, exposições e encontros rurais, levando pessoas e materiais com eficiência.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contato" class="contact-section">
+    <div class="container contact-content">
+        
+        <div class="contact-info">
+            <h2>Fale Conosco</h2>
+            <p>
+                Tem dúvidas, precisa de um orçamento personalizado ou quer discutir uma parceria logística? Envie-nos uma mensagem! Nossa equipe responderá o mais breve possível.
+            </p>
+            
+            <ul class="contact-details">
+                <li><i class="fas fa-phone-alt"></i> **(44) 9 8438-5432**</li>
+                <li><i class="fas fa-envelope"></i> **contato@mangalog.com.br**</li>
+                <li><i class="fas fa-map-marker-alt"></i> Endereço da Manga Transportes, PR/Brasil</li>
+            </ul>
+            
+            <a href="https://wa.me/5544984385432" target="_blank" class="cta-button">
+                Falar pelo WhatsApp
+            </a>
+
+        </div>
+
+        <div class="contact-form-wrapper">
+            <form action="/enviar-form" method="POST" class="contact-form">
+                <label for="nome">Nome Completo</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="assunto">Assunto</label>
+                <input type="text" id="assunto" name="assunto" required>
+
+                <label for="mensagem">Mensagem</label>
+                <textarea id="mensagem" name="mensagem" required></textarea>
+
+                <button type="submit" class="form-submit-button">Enviar Mensagem</button>
+            </form>
+        </div>
+
+    </div>
+</section>
+
+<footer class="footer-moderno">
+    <div class="container footer-grid">
+
+        <div class="col-info">
+            <h3 class="logo-text">Manga Transportes</h3>
+            <p class="slogan-text">
+                Conectando o campo à sua mesa com segurança, pontualidade e responsabilidade.
+            </p>
+            <p class="description-text">
+                Excelência em transporte rural e logística integrada.
+            </p>
+        </div>
+
+        <div class="col-links">
+            <h4>Links Rápidos</h4>
+            <ul>
+                <li><a href="#servicos">Transporte de Trabalhadores</a></li>
+                <li><a href="#servicos">Fretamento para Cooperativas</a></li>
+                <li><a href="#servicos">Transporte para Eventos</a></li>
+                <li><a href="trabalhe-conosco.html" target="_blank">Trabalhe Conosco</a></li>
+                <li><a href="#contato">Solicitar Orçamento</a></li>
+            </ul>
+        </div>
+
+        <div class="col-contato">
+            <h4>Fale Conosco</h4>
+            <div class="contato-item">
+                <i class="fas fa-phone-alt"></i>
+                <a href="tel:+5544984385432">(44) 9 8438-5432</a>
+            </div>
+            <div class="contato-item">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:contato@mangalog.com.br">contato@mangalog.com.br</a>
+            </div>
+            <div class="contato-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Endereço da Manga Transportes, PR/Brasil</span>
+            </div>
+
+            <div class="social-links">
+                <a href="https://wa.me/5544984385432" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-copyright">
+        <div class="container">
+            <p>&copy; 2025 Manga Transportes. Todos os direitos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+
+<script>
+    const toggle = document.querySelector(".menu-toggle");
+    const navMenu = document.querySelector(".nav-menu");
+    const menuLinks = document.querySelectorAll(".nav-menu a");
+    toggle.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+    });
+    menuLinks.forEach(link => {
+        link.addEventListener("click", () => {
+            // Apenas fecha o menu se não for um link externo (como o WhatsApp ou Trabalhe Conosco)
+            if (!link.classList.contains('cta-button') && link.getAttribute('href').startsWith('#')) { 
+                navMenu.classList.remove("active");
+            }
+        });
+    });
+</script>
+</body>
+</html>
