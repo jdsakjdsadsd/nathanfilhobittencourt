@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manga Transportes - Sua Carga no Campo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>Manga Transportes - Logística de Trabalhadores Rurais</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
@@ -15,7 +14,7 @@
             --color-text-light: #fff;
             --color-background-light: #f5f5f5;
             --color-background-white: #fff;
-            --color-dark-footer: #181818; /* Novo: Tom mais escuro para o rodapé */
+            --color-dark-footer: #181818;
             --color-footer-text: #ccc;
             --color-footer-border: rgba(255, 255, 255, 0.1);
         }
@@ -42,7 +41,7 @@
             padding: 0 20px;
         }
 
-        /* Header (Estilos Omitidos para Concisão - Mantidos Originais) */
+        /* Header */
         .header {
             padding: 20px 0;
             background-color: transparent;
@@ -62,9 +61,12 @@
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
         }
-        .logo img { height: 40px; margin-right: 10px; }
-        .logo-manga { font-size: 20px; color: rgb(75, 216, 75); }
-        .logo-transportes { font-size: 12px; font-weight: 400; color: rgb(75, 216, 75); }
+        .logo img {
+            height: 60px; /* ajuste conforme o tamanho da sua logo */
+            max-width: 200px;
+            object-fit: contain;
+        }
+
         .nav-menu {
             display: flex;
             gap: 15px;
@@ -87,11 +89,11 @@
             font-weight: 700;
             transition: all 0.3s ease;
             display: inline-block;
-            margin-top: 0; 
+            margin-top: 0;
             line-height: 1;
         }
-        .cta-button:hover { 
-            background-color: #e56d00; 
+        .cta-button:hover {
+            background-color: #e56d00;
             transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
@@ -102,18 +104,42 @@
             margin-left: 10px;
             margin-top: 0;
         }
+
+        /* ESTILOS DO MENU HAMBÚRGUER */
         .menu-toggle {
             display: none;
             font-size: 28px;
             background: none;
             border: none;
             cursor: pointer;
-            color: var(--color-text-light);
+            color: var(--color-text-light); /* Ícone branco no banner */
+            transition: color 0.3s;
         }
-        /* Hero Banner, Sobre Nós, Fatos Rápidos, Serviços, Contato (Estilos Omitidos para Concisão - Mantidos Originais) */
+
+        /* ÍCONES SOCIAIS DENTRO DO MENU */
+        .menu-social-icons {
+            display: none; /* Ocultar no desktop */
+            padding: 20px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            width: 100%;
+            justify-content: center;
+            gap: 20px;
+        }
+        .menu-social-icons a {
+            color: var(--color-primary); /* Ícones verdes */
+            font-size: 24px;
+            padding: 0;
+            transition: color 0.3s;
+        }
+        .menu-social-icons a:hover {
+            color: var(--color-secondary);
+        }
+        
+        /* Hero Banner */
         .hero { position: relative; width: 100%; height: 100vh; overflow: hidden; }
         .banner-container { position: relative; width: 100%; height: 100%; }
-        .banner-image { width: 100%; height: 100%; object-fit: cover; animation: zoomBanner 12s ease-in-out infinite; }
+        .banner-image { width: 100%; height: 100%; object-fit: cover; animation: zoomBanner 12s ease-in-out infinite; } 
         @keyframes zoomBanner { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
         .banner-text {
             position: absolute;
@@ -132,7 +158,7 @@
             from { transform: translateY(calc(-50% + 20px)); opacity: 0; }
             to { transform: translateY(-50%); opacity: 1; }
         }
-        .banner-text h1 { font-family: 'Montserrat', sans-serif; font-size: 3rem; font-weight: 700; margin-bottom: 15px; }
+        .banner-text h1 { font-family: 'Montserrat', sans-serif; font-size: 3rem; font-weight: 700; margin-bottom: 15px; min-height: 3.6rem; } 
         .banner-text p { font-size: 1.2rem; margin-bottom: 20px; }
         .banner-container::after {
             content: '';
@@ -141,6 +167,31 @@
             background-color: rgba(0,0,0,0.4);
             z-index: 0;
         }
+        
+        /* ESTILOS PARA O EFEITO DE TROCA DE TEXTO */
+        .typing-text {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .typing-text.visible {
+            opacity: 1;
+        }
+        .typing-text::after {
+            content: '|';
+            display: inline-block;
+            animation: blink-caret 0.75s step-end infinite;
+        }
+        .typing-text.full-text::after {
+            content: '';
+            animation: none;
+        }
+
+        @keyframes blink-caret {
+            from, to { opacity: 0; }
+            50% { opacity: 1; }
+        }
+        /* FIM DOS ESTILOS PARA EFEITO DE TROCA DE TEXTO */
+
 
         /* SEÇÃO "SOBRE NÓS" */
         .about-us-reimagined { padding: 160px 0; background-color: #f8f9fa; overflow: hidden; }
@@ -164,7 +215,7 @@
 
         /* Seção de Serviços */
         .services { padding: 100px 0; background: #fff; }
-        .services .section-title { font-family: 'Montserrat', sans-serif; font-size: 42px; margin-bottom: 10px; color: var(--color-primary); text-align: left; }
+        .services .section-title { font-family: 'Montserrat', sans-serif; font-size: 42px; margin-bottom: 10px; color: var(--color-primary); text-align: center; } 
         .services .section-subtitle { font-size: 1.1rem; color: #666; margin-bottom: 60px; max-width: 700px; margin-left: auto; margin-right: auto; text-align: center; }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
         .service-card { background: #fff; border: 1px solid #eee; border-radius: 16px; padding: 40px 25px; transition: all 0.4s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; }
@@ -205,11 +256,9 @@
         }
         .form-submit-button:hover { background-color: #083c18; }
 
-        /* -------------------------------------------------------------------------- */
-        /* NOVO RODAPÉ SOFISTICADO/MINIMALISTA */
-        /* -------------------------------------------------------------------------- */
+        /* RODAPÉ */
         .footer-moderno {
-            background-color: var(--color-dark-footer); 
+            background-color: var(--color-dark-footer);
             color: var(--color-footer-text);
             padding: 60px 0 0;
             font-family: 'Open Sans', sans-serif;
@@ -218,127 +267,60 @@
 
         .footer-grid {
             display: grid;
-            /* 3 colunas, com a primeira (info) maior para destaque */
-            grid-template-columns: 2fr 1fr 1.5fr; 
+            grid-template-columns: 2fr 1fr 1.5fr;
             gap: 40px;
             padding-bottom: 40px;
         }
 
-        .footer-moderno h3, 
-        .footer-moderno h4 {
+        .footer-moderno h3, .footer-moderno h4 {
             font-family: 'Montserrat', sans-serif;
-            color: var(--color-text-light); /* Títulos brancos ou tom claro */
+            color: var(--color-text-light);
             margin-bottom: 20px;
             font-weight: 600;
         }
 
-        .footer-moderno h3.logo-text {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
+        .footer-moderno h3.logo-text { font-size: 1.6rem; font-weight: 700; margin-bottom: 10px; }
 
         .footer-moderno h4 {
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding-bottom: 5px; 
-            border-bottom: 2px solid var(--color-secondary); /* Linha de destaque Laranja */
+            font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; padding-bottom: 5px;
+            border-bottom: 2px solid var(--color-secondary);
             display: inline-block;
         }
 
-        .col-info .slogan-text {
-            font-size: 1.1rem;
-            line-height: 1.5;
-            margin-bottom: 8px;
-            color: var(--color-text-light);
-        }
+        .col-info .slogan-text { font-size: 1.1rem; line-height: 1.5; margin-bottom: 8px; color: var(--color-text-light); }
+        .col-info .description-text { font-size: 0.9rem; line-height: 1.6; }
 
-        .col-info .description-text {
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
+        .footer-moderno ul { list-style: none; padding: 0; }
+        .footer-moderno ul li { margin-bottom: 10px; }
+        .footer-moderno a { color: var(--color-footer-text); text-decoration: none; transition: color 0.3s; }
+        .footer-moderno a:hover { color: var(--color-secondary); }
 
-        /* Links */
-        .footer-moderno ul {
-            list-style: none;
-            padding: 0;
-        }
+        .col-contato .contato-item { display: flex; align-items: flex-start; margin-bottom: 15px; }
+        .col-contato .contato-item i { font-size: 1rem; margin-right: 10px; color: var(--color-secondary); margin-top: 3px; }
+        .col-contato .contato-item span { color: var(--color-footer-text); }
 
-        .footer-moderno ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-moderno a {
-            color: var(--color-footer-text);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-moderno a:hover {
-            color: var(--color-secondary);
-        }
-
-        /* Contato */
-        .col-contato .contato-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 15px;
-        }
-        
-        .col-contato .contato-item i {
-            font-size: 1rem;
-            margin-right: 10px;
-            color: var(--color-secondary);
-            margin-top: 3px; /* Alinhamento visual */
-        }
-
-        .col-contato .contato-item span {
-            color: var(--color-footer-text);
-        }
-
-        /* Redes Sociais */
-        .social-links {
-            margin-top: 25px;
-            display: flex;
-            gap: 15px;
-        }
-
+        .social-links { margin-top: 25px; display: flex; gap: 15px; }
         .social-links a {
-            font-size: 1.4rem;
-            width: 35px;
-            height: 35px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            border: 1px solid var(--color-footer-text);
-            color: var(--color-footer-text);
-            transition: all 0.3s;
+            font-size: 1.4rem; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; border: 1px solid var(--color-footer-text);
+            color: var(--color-footer-text); transition: all 0.3s;
         }
-
         .social-links a:hover {
-            background-color: var(--color-secondary);
-            color: var(--color-dark-footer);
-            border-color: var(--color-secondary);
-            transform: translateY(-2px);
+            background-color: var(--color-secondary); color: var(--color-dark-footer);
+            border-color: var(--color-secondary); transform: translateY(-2px);
         }
 
-        /* Direitos Autorais */
         .footer-copyright {
-            text-align: center;
-            border-top: 1px solid var(--color-footer-border);
-            padding: 20px 0;
-            font-size: 0.8rem;
-            color: white;
+            text-align: center; border-top: 1px solid var(--color-footer-border);
+            padding: 20px 0; font-size: 0.8rem; color: white;
         }
-        /* -------------------------------------------------------------------------- */
-        /* FIM DO NOVO RODAPÉ */
-        /* -------------------------------------------------------------------------- */
+        /* FIM RODAPÉ */
 
-        /* Responsividade - Geral (Mantidos Originais) */
+        /* -------------------------------------------------------------------------- */
+        /* RESPONSIVIDADE E MENU HAMBÚRGUER (NOVO) */
+        /* -------------------------------------------------------------------------- */
         @media (max-width: 992px) {
-            .banner-text h1 { font-size: 2.2rem; }
+            .banner-text h1 { font-size: 2.2rem; min-height: 2.6rem; }
             .about-text-column .section-title { font-size: 36px; }
             .proof-item h3 { font-size: 2.5rem; }
             .proof-points { padding: 60px 0; }
@@ -346,36 +328,84 @@
                 flex-direction: column;
                 gap: 40px;
             }
-            /* Responsividade Rodapé Médio */
             .footer-grid {
                 grid-template-columns: 2fr 1fr;
             }
             .col-info {
-                grid-column: 1 / -1; 
+                grid-column: 1 / -1;
             }
         }
 
         @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .menu-social-icons { display: flex; } /* Mostrar ícones no menu hambúrguer */
+
+            /* ESTILO DO MENU ABERTO (FUNDO BRANCO) */
             .nav-menu {
-                position: absolute; top: 80px; right: 0;
-                background: rgba(0,0,0,0.9);
-                flex-direction: column; width: 100%;
-                display: none;
+                position: fixed; 
+                top: 0;
+                right: -100%; /* Inicia fora da tela */
+                width: 70%; /* Largura do menu */
+                height: 100vh; 
+                background: var(--color-background-white); /* Fundo BRANCO */
+                flex-direction: column;
+                display: flex; 
                 align-items: flex-start;
+                padding-top: 80px; 
+                transition: right 0.3s ease-in-out; 
+                z-index: 10001; 
+                font-family: 'Montserrat', sans-serif; 
+                overflow-y: auto; 
             }
-            .nav-menu a, .nav-menu .cta-button {
+
+            .nav-menu.active {
+                right: 0; /* Move para a posição 0 (visível) */
+            }
+
+            /* ESTILO DOS LINKS NO MENU ABERTO */
+            .nav-menu a {
                 width: 100%;
                 padding: 15px 20px;
                 margin: 0;
                 text-align: left;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+                color: var(--color-primary); /* Links em verde escuro */
+                font-weight: 600;
             }
-            .nav-menu.active { display: flex; }
-            .menu-toggle { display: block; }
+            .nav-menu a:hover {
+                background-color: var(--color-background-light);
+                color: var(--color-secondary);
+            }
+
+            .cta-button.menu-cta {
+                width: 90%; 
+                margin: 20px auto 10px; 
+                text-align: center;
+            }
+            
+            /* MUDA O ÍCONE HAMBÚRGUER PARA X QUANDO ATIVO */
+            .menu-toggle {
+                position: fixed; 
+                top: 20px;
+                right: 20px;
+                z-index: 10002;
+                color: var(--color-text-light); /* Cor original no banner */
+            }
+            
+            .menu-toggle.active {
+                color: var(--color-primary); /* Cor do X (verde escuro) quando o menu está aberto */
+            }
+            .menu-toggle.active i::before {
+                content: "\f00d"; /* Código do ícone 'X' (times) do Font Awesome */
+            }
+            .menu-toggle i::before {
+                content: "\f0c9"; /* Código do ícone 'Hambúrguer' (bars) */
+            }
+
 
             /* Responsividade Rodapé Pequeno */
             .footer-grid {
-                grid-template-columns: 1fr; 
+                grid-template-columns: 1fr;
                 gap: 30px;
             }
             .col-info {
@@ -384,7 +414,10 @@
         }
 
         @media (max-width: 480px) {
-            .banner-text h1 { font-size: 1.6rem; }
+            .nav-menu {
+                width: 85%;
+            }
+            .banner-text h1 { font-size: 1.6rem; min-height: 1.9rem; }
             .banner-text p { font-size: 0.9rem; }
             .cta-button { padding: 10px 20px; font-size: 0.9rem; }
             .about-us-reimagined { padding: 100px 0; }
@@ -398,13 +431,11 @@
 <header class="header">
     <div class="container header-content-wrapper">
         <div class="logo">
-            <img src="logo.png" alt="Manga Transportes Logo">
-            <div>
-                <div class="logo-manga">MANGA</div>
-                <div class="logo-transportes">TRANSPORTES</div>
-            </div>
+            <img src="logo.png" alt="Logo da Empresa">
         </div>
+
         <button class="menu-toggle" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+
         <nav class="nav-menu">
             <a href="#inicio">Início</a>
             <a href="#servicos">Serviços</a>
@@ -414,17 +445,22 @@
             <a href="https://wa.me/5544984385432" target="_blank" class="cta-button menu-cta">
                 Solicitar Orçamento
             </a>
+            <div class="menu-social-icons">
+                <a href="https://wa.me/5544984385432" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
         </nav>
     </div>
 </header>
 
+
 <section id="inicio" class="hero">
     <div class="banner-container">
-        <img src="boasvindas.png" alt="Caminhão da Manga Transportes" class="banner-image">
+        <img src="boasvindas.png" alt="Veículo da Manga Transportes para Trabalhadores Rurais" class="banner-image">
         <div class="banner-text">
             <div class="banner-text-content">
-                <h1>Bem-vindo a Manga Transportes!</h1>
-                <p>Conectando o campo à sua mesa, com agilidade, segurança e responsabilidade.</p>
+                <h1 id="rotating-title" class="typing-text"></h1>
+                <p>Garantimos que sua equipe chegue ao campo com segurança, conforto e pontualidade.</p>
                 <a href="https://wa.me/5544984385432" target="_blank" class="cta-button">Solicitar Orçamento</a>
             </div>
         </div>
@@ -438,33 +474,33 @@
                 <span class="section-tagline">Desde 2021</span>
                 <h2 class="section-title">Quem somos?</h2>
                 <p>
-                    A <strong>Manga Transportes</strong> nasceu da visão de criar pontes entre o produtor rural e o mercado, oferecendo soluções logísticas que unem tecnologia, segurança e um profundo respeito pelo agronegócio. Cada jornada é um compromisso com a excelência.
+                    A <strong>Manga Transportes</strong> é uma microempresa situada no <strong>Noroeste do Paraná</strong> especializada em logística de mobilidade rural, focada no transporte de trabalhadores rurais. Nossa missão é ser o elo de segurança e eficiência que conecta o talento humano ao coração da produção agrícola. Cuidamos do transporte para que você se concentre na colheita.
                 </p>
-                
+
                 <ul class="values-list">
                     <li>
-                        <div class="value-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div class="value-icon"><i class="fas fa-bus-alt"></i></div> 
                         <div class="value-text">
-                            <h3>Segurança Inegociável</h3>
-                            <p>Sua carga e sua equipe transportadas com a máxima responsabilidade.</p>
+                            <h3>Frota</h3>
+                            <p>Veículos regulamentados e aptos, ideais para o acesso e conforto no campo.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="value-icon"><i class="fas fa-check-double"></i></div>
+                        <div class="value-text">
+                            <h3>Segurança</h3>
+                            <p>Toda a documentação em dia e motoristas capacitados para a condução segura.</p>
                         </div>
                     </li>
                     <li>
                         <div class="value-icon"><i class="fas fa-clock"></i></div>
                         <div class="value-text">
-                            <h3>Pontualidade Britânica</h3>
-                            <p>Respeitamos sua logística e garantimos entregas sempre no prazo.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="value-icon"><i class="fas fa-leaf"></i></div>
-                        <div class="value-text">
-                            <h3>Operação Sustentável</h3>
-                            <p>Práticas que cuidam do meio ambiente em cada etapa do transporte.</p>
+                            <h3>Pontualidade</h3>
+                            <p>Resultados entregues dentro do prazo.</p>
                         </div>
                     </li>
                 </ul>
-                <a href="#contato" class="cta-button">Conheça Nossas Soluções</a>
+                <a href="#contato" class="cta-button">Fale com um Especialista</a>
             </div>
         </div>
     </div>
@@ -473,20 +509,20 @@
 <section class="proof-points">
     <div class="container proof-grid">
         <div class="proof-item">
-            <h3>+3 Anos</h3>
-            <p>De experiência no agronegócio</p>
+            <h3>+10 Anos</h3>
+            <p>De experiência em transporte rural</p>
         </div>
         <div class="proof-item">
-            <h3>98%</h3>
-            <p>De satisfação dos usuários</p>
+            <h3>100%</h3>
+            <p>Conformidade legal e de segurança</p>
         </div>
         <div class="proof-item">
-            <h3>+100</h3>
-            <p>Clientes pelo Brasil todo</p>
+            <h3>+50</h3>
+            <p>Agricultores atendidos no oeste do PR</p>
         </div>
         <div class="proof-item">
-            <h3>OTIF 95%</h3>
-            <p>On-Time In-Full (Entregas no Prazo)</p>
+            <h3>99%</h3>
+            <p>Índice de pontualidade no campo</p>
         </div>
     </div>
 </section>
@@ -494,28 +530,28 @@
 <section id="servicos" class="services">
     <div class="container">
         <h2 class="section-title">Nossos Serviços</h2>
-        <p class="section-subtitle">Soluções completas em transporte para atender às necessidades do campo, da indústria e dos eventos.</p>
+        <p class="section-subtitle">Soluções de transporte focadas em pessoas, atendendo às demandas de fazendas, cooperativas e eventos do agronegócio.</p>
         <div class="services-grid">
             <div class="service-card">
                 <div class="icon-wrapper">
                     <i class="fas fa-people-carry"></i>
                 </div>
                 <h3>Transporte de Trabalhadores</h3>
-                <p>Logística eficiente para a sua colheita, garantindo que sua equipe chegue com segurança e pontualidade.</p>
+                <p>Logística diária de ida e volta para funcionários em diversas frentes agrícolas (colheita, plantio, manejo). Foco total em segurança e conforto.</p>
             </div>
             <div class="service-card">
                 <div class="icon-wrapper">
-                    <i class="fas fa-warehouse"></i>
+                    <i class="fas fa-route"></i> 
                 </div>
-                <h3>Fretamento para Cooperativas</h3>
-                <p>Transporte seguro de insumos e produtos, apoiando a produção e a distribuição das cooperativas.</p>
+                <h3>Fretamento Contínuo</h3>
+                <p>Contratos de longo prazo para cooperativas, indústrias e grandes fazendas que necessitam de transporte fixo e regular de pessoal.</p>
             </div>
             <div class="service-card">
                 <div class="icon-wrapper">
                     <i class="fas fa-calendar-alt"></i>
                 </div>
-                <h3>Transporte para Eventos</h3>
-                <p>Serviço dedicado para feiras, exposições e encontros rurais, levando pessoas e materiais com eficiência.</p>
+                <h3>Viagens e Eventos Rurais</h3>
+                <p>Serviço dedicado para feiras, exposições, treinamentos e encontros rurais, levando pessoas e equipes com conforto e eficiência.</p>
             </div>
         </div>
     </div>
@@ -523,19 +559,19 @@
 
 <section id="contato" class="contact-section">
     <div class="container contact-content">
-        
+
         <div class="contact-info">
             <h2>Fale Conosco</h2>
             <p>
-                Tem dúvidas, precisa de um orçamento personalizado ou quer discutir uma parceria logística? Envie-nos uma mensagem! Nossa equipe responderá o mais breve possível.
+                Tem dúvidas, precisa de um orçamento para transporte de sua equipe ou quer discutir uma parceria logística? Envie-nos uma mensagem! Nossa equipe responderá o mais breve possível.
             </p>
-            
+
             <ul class="contact-details">
-                <li><i class="fas fa-phone-alt"></i> **(44) 9 8438-5432**</li>
-                <li><i class="fas fa-envelope"></i> **contato@mangalog.com.br**</li>
-                <li><i class="fas fa-map-marker-alt"></i> Endereço da Manga Transportes, PR/Brasil</li>
+                <li><i class="fas fa-phone-alt"></i><strong>(44) 98438-5432</strong></li>
+                <li><i class="fas fa-envelope"></i><strong>mangatransportes@gmail.com</strong></li>
+              
             </ul>
-            
+
             <a href="https://wa.me/5544984385432" target="_blank" class="cta-button">
                 Falar pelo WhatsApp
             </a>
@@ -549,11 +585,11 @@
 
                 <label for="email">E-mail</label>
                 <input type="email" id="email" name="email" required>
-                
-                <label for="assunto">Assunto</label>
-                <input type="text" id="assunto" name="assunto" required>
 
-                <label for="mensagem">Mensagem</label>
+                <label for="assunto">Assunto</label>
+                <input type="text" id="assunto" name="assunto" value="Orçamento para Transporte de Equipe" required>
+
+                <label for="mensagem">Mensagem (Número de pessoas e rota)</label>
                 <textarea id="mensagem" name="mensagem" required></textarea>
 
                 <button type="submit" class="form-submit-button">Enviar Mensagem</button>
@@ -569,19 +605,18 @@
         <div class="col-info">
             <h3 class="logo-text">Manga Transportes</h3>
             <p class="slogan-text">
-                Conectando o campo à sua mesa com segurança, pontualidade e responsabilidade.
+                O transporte confiável que leva sua equipe ao sucesso no campo.
             </p>
             <p class="description-text">
-                Excelência em transporte rural e logística integrada.
+                Especialistas em mobilidade e logística de pessoal para o agronegócio brasileiro.
             </p>
         </div>
 
         <div class="col-links">
-            <h4>Links Rápidos</h4>
+            <h4>Nossos Focos</h4>
             <ul>
                 <li><a href="#servicos">Transporte de Trabalhadores</a></li>
-                <li><a href="#servicos">Fretamento para Cooperativas</a></li>
-                <li><a href="#servicos">Transporte para Eventos</a></li>
+                <li><a href="#servicos">Fretamento Contínuo</a></li>
                 <li><a href="trabalhe-conosco.html" target="_blank">Trabalhe Conosco</a></li>
                 <li><a href="#contato">Solicitar Orçamento</a></li>
             </ul>
@@ -604,7 +639,6 @@
 
             <div class="social-links">
                 <a href="https://wa.me/5544984385432" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
@@ -620,20 +654,96 @@
 
 
 <script>
+    /* -------------------------------------------------------------------------- */
+    /* LÓGICA DO MENU HAMBÚRGUER */
+    /* -------------------------------------------------------------------------- */
     const toggle = document.querySelector(".menu-toggle");
     const navMenu = document.querySelector(".nav-menu");
     const menuLinks = document.querySelectorAll(".nav-menu a");
-    toggle.addEventListener("click", () => {
+
+    function toggleMenu() {
+        // Alterna as classes para mostrar/esconder o menu
         navMenu.classList.toggle("active");
-    });
+        toggle.classList.toggle("active"); // Adiciona a classe 'active' ao botão (para mudar o ícone)
+        document.body.classList.toggle("menu-open", navMenu.classList.contains("active"));
+    }
+
+    toggle.addEventListener("click", toggleMenu);
+
     menuLinks.forEach(link => {
+        // Fecha o menu ao clicar em um link (se for uma âncora interna)
         link.addEventListener("click", () => {
-            // Apenas fecha o menu se não for um link externo (como o WhatsApp ou Trabalhe Conosco)
-            if (!link.classList.contains('cta-button') && link.getAttribute('href').startsWith('#')) { 
+            if (link.getAttribute('href').startsWith('#')) {
                 navMenu.classList.remove("active");
+                toggle.classList.remove("active");
+                document.body.classList.remove("menu-open");
             }
         });
     });
+
+    const style = document.createElement('style');
+    style.innerHTML = `
+        body.menu-open {
+            overflow: hidden; /* Evita que o conteúdo role quando o menu está aberto */
+        }
+    `;
+    document.head.appendChild(style);
+
+    /* -------------------------------------------------------------------------- */
+    /* LÓGICA DO EFEITO DE TROCA DE TEXTO */
+    /* -------------------------------------------------------------------------- */
+    const rotatingTitle = document.getElementById('rotating-title');
+    const texts = [
+        "Bem-vindo a Manga Transportes!",
+        "Especialista em Transporte de Trabalhadores Sazonais do Campo.",
+        "Segurança e Pontualidade para sua Logística Rural."
+    ];
+    let textIndex = 0;
+    let charIndex = 0;
+    const typingDelay = 75; // Velocidade de digitação (ms)
+    const eraseDelay = 35;  // Velocidade para apagar (ms)
+    const newTextDelay = 3000; // Tempo antes de começar a próxima frase (ms)
+
+    function type() {
+        const currentText = texts[textIndex];
+        if (charIndex < currentText.length) {
+            if (!rotatingTitle.classList.contains("visible")) {
+                rotatingTitle.classList.add("visible");
+            }
+            rotatingTitle.textContent += currentText.charAt(charIndex);
+            charIndex++;
+            setTimeout(type, typingDelay);
+        } else {
+            // Texto completo, adiciona a classe para remover o cursor piscante
+            rotatingTitle.classList.add("full-text"); 
+            setTimeout(erase, newTextDelay);
+        }
+    }
+
+    function erase() {
+        const currentText = texts[textIndex];
+        if (charIndex > 0) {
+            if (rotatingTitle.classList.contains("full-text")) {
+                rotatingTitle.classList.remove("full-text");
+            }
+            rotatingTitle.textContent = currentText.substring(0, charIndex - 1);
+            charIndex--;
+            setTimeout(erase, eraseDelay);
+        } else {
+            // Texto apagado, prepara para o próximo
+            textIndex++;
+            if (textIndex >= texts.length) {
+                textIndex = 0;
+            }
+            setTimeout(type, typingDelay + 500); // Pequena pausa antes de começar a digitar
+        }
+    }
+
+    // Inicia o efeito
+    document.addEventListener("DOMContentLoaded", function() {
+        if (texts.length) setTimeout(type, 1500); // 1.5s de delay inicial
+    });
+
 </script>
 </body>
 </html>
