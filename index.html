@@ -171,7 +171,7 @@
         }
 
         /* Atrasos para os elementos internos das seções */
-        .about-text-column, .proof-item, .service-card, .contact-content {
+        .about-text-column, .proof-item, .service-card, .contact-content, .feedback-card {
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
@@ -183,6 +183,10 @@
         .service-card:nth-child(1) { transition-delay: 0.1s; }
         .service-card:nth-child(2) { transition-delay: 0.2s; }
         .service-card:nth-child(3) { transition-delay: 0.3s; }
+
+        .feedback-card:nth-child(1) { transition-delay: 0.1s; }
+        .feedback-card:nth-child(2) { transition-delay: 0.2s; }
+        .feedback-card:nth-child(3) { transition-delay: 0.3s; }
         
         /* Efeito no rodapé: Ícones das redes sociais */
         .social-links a {
@@ -209,7 +213,7 @@
         .about-content-wrapper { display: flex; justify-content: center; }
         .about-text-column { background-color: var(--color-background-white); padding: 80px 70px; border-radius: 16px; box-shadow: 0 15px 80px rgba(0,0,0,0.1); width: 100%; max-width: 1100px; }
         .section-tagline { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--color-secondary); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; font-size: 1rem; }
-        .about-text-column .section-title { font-family: 'Montserrat', sans-serif; font-size: 44px; line-height: 1.3; color: var(--color-primary); margin-bottom: 30px; }
+        .about-text-column .section-title, .feedbacks .section-title, .contact-section .section-title { font-family: 'Montserrat', sans-serif; font-size: 44px; line-height: 1.3; color: var(--color-primary); margin-bottom: 30px; }
         .about-text-column p { margin-bottom: 35px; font-size: 1.1rem; color: #444; line-height: 1.8; }
         .values-list { list-style: none; padding: 0; margin-top: 30px; margin-bottom: 40px; }
         .values-list li { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 25px; }
@@ -235,6 +239,91 @@
         .service-card:hover .icon-wrapper { background: var(--color-primary); color: #fff; }
         .service-card h3 { font-family: 'Montserrat', sans-serif; font-size: 22px; color: var(--color-primary); margin-bottom: 15px; }
         .service-card p { font-size: 0.95rem; color: #555; line-height: 1.5; }
+
+        /* Seção de Feedbacks (NOVA) */
+        .feedbacks {
+            padding: 100px 0;
+            background-color: var(--color-background-light);
+            text-align: center;
+        }
+
+        .feedbacks .section-title {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .feedbacks .section-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .feedback-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feedback-card {
+            background-color: var(--color-background-white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            text-align: left;
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+
+        .feedback-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .feedback-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .feedback-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 3px solid var(--color-secondary);
+        }
+
+        .feedback-info h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            color: var(--color-primary);
+            margin-bottom: 5px;
+        }
+
+        .feedback-info span {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .feedback-stars {
+            color: var(--color-secondary);
+            margin-bottom: 15px;
+        }
+
+        .feedback-stars i {
+            margin-right: 2px;
+        }
+
+        .feedback-text {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
 
         /* Seção de Contato e Formulário */
         .contact-section { padding: 100px 0; background-color: var(--color-background-white); }
@@ -396,7 +485,7 @@
         /* Responsividade - Geral */
         @media (max-width: 992px) {
             .banner-text h1 { font-size: 2.2rem; }
-            .about-text-column .section-title { font-size: 36px; }
+            .about-text-column .section-title, .feedbacks .section-title, .contact-section .section-title { font-size: 36px; }
             .proof-item h3 { font-size: 2.5rem; }
             .proof-points { padding: 60px 0; }
             .contact-content {
@@ -409,6 +498,9 @@
             }
             .col-info {
                 grid-column: 1 / -1; 
+            }
+            .feedback-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             }
         }
 
@@ -501,6 +593,9 @@
             .col-info {
                 grid-column: auto;
             }
+            .feedback-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 480px) {
@@ -509,7 +604,7 @@
             .cta-button { padding: 10px 20px; font-size: 0.9rem; }
             .about-us-reimagined { padding: 100px 0; }
             .about-text-column { padding: 50px 30px; }
-            .about-text-column .section-title { font-size: 28px; }
+            .about-text-column .section-title, .feedbacks .section-title, .contact-section .section-title { font-size: 28px; }
             .services .section-title { font-size: 32px; }
             
             /* Ajuste para o menu menor (se for necessário) */
@@ -532,6 +627,7 @@
             <a href="#inicio">Início</a>
             <a href="#sobre">Sobre Nós</a>
             <a href="#servicos">Serviços</a>
+            <a href="#feedbacks">Feedbacks</a> <!-- Novo link para a seção de feedbacks -->
             <a href="#contato">Contato</a>
             <a href="trabalhe-conosco.html" target="_blank">Trabalhe Conosco</a>
             <a href="https://wa.me/5544984385432" target="_blank" class="cta-button menu-cta">
@@ -643,6 +739,67 @@
         </div>
     </div>
 </section>
+
+<!-- NOVA SEÇÃO DE FEEDBACKS -->
+<section id="feedbacks" class="feedbacks">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">O que nossos clientes dizem</h2>
+        <p class="section-subtitle animate-on-scroll">A satisfação dos nossos parceiros é o nosso maior combustível. Veja alguns depoimentos:</p>
+        
+        <div class="feedback-grid">
+            
+            <div class="feedback-card animate-on-scroll">
+                <div class="feedback-header">
+                    <img src="avatar1.png" alt="Avatar Cliente 1" class="feedback-avatar">
+                    <div class="feedback-info">
+                        <h4>João Silva</h4>
+                        <span>Produtor Rural - PR</span>
+                    </div>
+                </div>
+                <div class="feedback-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="feedback-text">
+                    "A Manga Transportes revolucionou a logística da minha fazenda. A pontualidade e o cuidado com a carga são impecáveis. Recomendo a todos!"
+                </p>
+            </div>
+
+            <div class="feedback-card animate-on-scroll">
+                <div class="feedback-header">
+                    <img src="avatar2.png" alt="Avatar Cliente 2" class="feedback-avatar">
+                    <div class="feedback-info">
+                        <h4>Maria Oliveira</h4>
+                        <span>Gerente de Cooperativa - SP</span>
+                    </div>
+                </div>
+                <div class="feedback-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="feedback-text">
+                    "Sempre que precisamos de transporte para nossos insumos, a Manga Transportes é a nossa primeira escolha. Profissionalismo e eficiência garantidos."
+                </p>
+            </div>
+
+            <div class="feedback-card animate-on-scroll">
+                <div class="feedback-header">
+                    <img src="avatar3.png" alt="Avatar Cliente 3" class="feedback-avatar">
+                    <div class="feedback-info">
+                        <h4>Carlos Pereira</h4>
+                        <span>Organizador de Eventos - MG</span>
+                    </div>
+                </div>
+                <div class="feedback-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="feedback-text">
+                    "Utilizamos o serviço para transporte de equipes e materiais em nossas feiras. Tudo correu perfeitamente, sem atrasos ou imprevistos. Excelente!"
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- FIM DA NOVA SEÇÃO DE FEEDBACKS -->
 
 <section id="contato" class="contact-section">
     <div class="container contact-content animate-on-scroll">
