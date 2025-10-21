@@ -224,7 +224,49 @@
 
         /* SEÇÃO DE FATOS RÁPIDOS */
         .proof-points { padding: 80px 0; background-color: var(--color-primary); color: var(--color-text-light); text-align: center; }
-        .proof-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+        .proof-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 40px; 
+            /* 🌟 Adiciona posicionamento relativo para os divisores absolutos */
+            position: relative; 
+        }
+
+        /* 🌟 NOVO: ESTILO PARA DIVISÓRIAS MINIMALISTAS E BONITAS */
+        .proof-grid::after {
+            content: ''; /* Conteúdo vazio para criar a linha */
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            height: 100%; /* Ocupa toda a altura da grid */
+            pointer-events: none; /* Garante que o usuário possa clicar nos itens */
+            z-index: 0;
+            
+            /* Cria as linhas verticais usando um gradiente (duas linhas) */
+            background: repeating-linear-gradient(
+                to right,
+                transparent 33.33%, /* Ocupa o espaço do primeiro item */
+                var(--color-secondary) 33.33%, /* Início da primeira linha */
+                var(--color-secondary) 33.53%, /* Largura da primeira linha (0.2%) */
+                transparent 33.53%, /* Espaço entre as linhas */
+                transparent 66.66%, /* Ocupa o espaço do segundo item */
+                var(--color-secondary) 66.66%, /* Início da segunda linha */
+                var(--color-secondary) 66.86%, /* Largura da segunda linha (0.2%) */
+                transparent 66.86% /* Restante */
+            );
+            /* Ajuste para que o gradiente fique alinhado com o conteúdo (centralizado) */
+            background-size: 100% 70%; /* Reduz a altura da linha para 70% */
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        /* 🌟 NOVO: Garante que o texto fique acima do divisor (z-index) */
+        .proof-item {
+            position: relative;
+            z-index: 1; /* Coloca o conteúdo do item acima do pseudo-elemento */
+        }
+        
         .proof-item h3 { font-family: 'Montserrat', sans-serif; font-size: 3.5rem; font-weight: 700; color: var(--color-secondary); margin-bottom: 5px; line-height: 1; }
         .proof-item p { font-size: 1.1rem; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; color: rgba(255, 255, 255, 0.9); }
 
@@ -584,7 +626,19 @@
             /* -------------------------------------------------------------------------- */
             /* 🌟 FIM DOS ESTILOS DE MENU HAMBÚRGUER 🌟 */
             /* -------------------------------------------------------------------------- */
-
+            
+            /* 🌟 NOVO: Ajuste Responsivo para Mobile: Remove as divisórias na vertical */
+            .proof-grid::after {
+                display: none; /* Remove a divisória vertical em telas pequenas */
+            }
+            
+            /* 🌟 NOVO: Adiciona um divisor horizontal (mais fino) para o mobile */
+            .proof-item:not(:last-child) {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Linha horizontal entre itens */
+                padding-bottom: 20px;
+                margin-bottom: 20px;
+            }
+            
             /* Responsividade Rodapé Pequeno */
             .footer-grid {
                 grid-template-columns: 1fr; 
@@ -627,8 +681,7 @@
             <a href="#inicio">Início</a>
             <a href="#sobre">Sobre Nós</a>
             <a href="#servicos">Serviços</a>
-            <a href="#feedbacks">Feedbacks</a> <!-- Novo link para a seção de feedbacks -->
-            <a href="#contato">Contato</a>
+            <a href="#feedbacks">Feedbacks</a> <a href="#contato">Contato</a>
             <a href="trabalhe-conosco.html" target="_blank">Trabalhe Conosco</a>
             <a href="https://wa.me/5544984385432" target="_blank" class="cta-button menu-cta">
                 Solicitar Orçamento
@@ -696,10 +749,6 @@
             <p>De experiência no agronegócio</p>
         </div>
         <div class="proof-item animate-on-scroll">
-            <h3>98%</h3>
-            <p>De satisfação dos usuários</p>
-        </div>
-        <div class="proof-item animate-on-scroll">
             <h3>+100</h3>
             <p>Clientes pelo Brasil todo</p>
         </div>
@@ -740,7 +789,6 @@
     </div>
 </section>
 
-<!-- NOVA SEÇÃO DE FEEDBACKS -->
 <section id="feedbacks" class="feedbacks">
     <div class="container">
         <h2 class="section-title animate-on-scroll">O que nossos clientes dizem</h2>
@@ -752,8 +800,8 @@
                 <div class="feedback-header">
                     <img src="avatar1.png" alt="Avatar Cliente 1" class="feedback-avatar">
                     <div class="feedback-info">
-                        <h4>João Silva</h4>
-                        <span>Produtor Rural - PR</span>
+                        <h4>Demarco Bittencourt</h4>
+                        <span>Agricultor </span>
                     </div>
                 </div>
                 <div class="feedback-stars">
@@ -766,17 +814,17 @@
 
             <div class="feedback-card animate-on-scroll">
                 <div class="feedback-header">
-                    <img src="avatar2.png" alt="Avatar Cliente 2" class="feedback-avatar">
+                    <img src="avatar2.jpg" alt="Avatar Cliente 2" class="feedback-avatar">
                     <div class="feedback-info">
-                        <h4>Maria Oliveira</h4>
-                        <span>Gerente de Cooperativa - SP</span>
+                        <h4>Pedro Filho</h4>
+                        <span>Gerente Cooperativa</span>
                     </div>
                 </div>
                 <div class="feedback-stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                 </div>
                 <p class="feedback-text">
-                    "Sempre que precisamos de transporte para nossos insumos, a Manga Transportes é a nossa primeira escolha. Profissionalismo e eficiência garantidos."
+                    "O serviço de fretamento para a nossa cooperativa é de primeira linha. Os veículos são novos e a gestão de rotas é muito profissional."
                 </p>
             </div>
 
@@ -784,203 +832,163 @@
                 <div class="feedback-header">
                     <img src="avatar3.png" alt="Avatar Cliente 3" class="feedback-avatar">
                     <div class="feedback-info">
-                        <h4>Carlos Pereira</h4>
-                        <span>Organizador de Eventos - MG</span>
+                        <h4>Mario Santos</h4>
+                        <span>Produtor Rural</span>
                     </div>
                 </div>
                 <div class="feedback-stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                 </div>
                 <p class="feedback-text">
-                    "Utilizamos o serviço para transporte de equipes e materiais em nossas feiras. Tudo correu perfeitamente, sem atrasos ou imprevistos. Excelente!"
+                    "Utilizamos a Manga para o transporte em nossa feira agropecuária. Tudo correu perfeitamente, sem atrasos ou problemas. Excelente parceria!"
                 </p>
             </div>
 
         </div>
     </div>
 </section>
-<!-- FIM DA NOVA SEÇÃO DE FEEDBACKS -->
 
 <section id="contato" class="contact-section">
-    <div class="container contact-content animate-on-scroll">
-        
-        <div class="contact-info">
-            <h2>Fale Conosco</h2>
-            <p>
-                Tem dúvidas, precisa de um orçamento personalizado ou quer discutir uma parceria logística? Envie-nos uma mensagem! Nossa equipe responderá o mais breve possível.
-            </p>
-            
-            <ul class="contact-details">
-                <li><i class="fas fa-phone-alt"></i>(44) 98438-5432</li>
-                <li><i class="fas fa-envelope"></i> mangatransportes@gmail.com.br</li>
-               
-            </ul>
-            
-            <a href="https://wa.me/5544984385432" target="_blank" class="cta-button">
-                Falar pelo WhatsApp
-            </a>
+    <div class="container">
+        <div class="contact-content animate-on-scroll">
+            <div class="contact-info">
+                <span class="section-tagline">Fale Conosco</span>
+                <h2 class="section-title">Pronto para levar sua carga ao destino?</h2>
+                <p>
+                    Entre em contato hoje mesmo e descubra como a Manga Transportes pode otimizar a logística do seu negócio no agronegócio. Estamos prontos para te atender!
+                </p>
 
+                <ul class="contact-details">
+                    <li>
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+55 (44) 98438-5432</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <span>mangatransportes@gmail.com.br</span>
+                    </li>
+                   
+                </ul>
+                <a href="https://wa.me/5544984385432" target="_blank" class="cta-button">Fale Conosco no WhatsApp</a>
+            </div>
+
+            <div class="contact-form-wrapper">
+                <form class="contact-form" action="#" method="POST">
+                    <label for="name">Seu Nome:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Seu Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="message">Sua Mensagem:</label>
+                    <textarea id="message" name="message" required></textarea>
+
+                    <button type="submit" class="form-submit-button">Enviar Mensagem</button>
+                </form>
+            </div>
         </div>
-
-        <div class="contact-form-wrapper">
-            <form action="/enviar-form" method="POST" class="contact-form">
-                <label for="nome">Nome Completo</label>
-                <input type="text" id="nome" name="nome" required>
-
-                <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="assunto">Assunto</label>
-                <input type="text" id="assunto" name="assunto" required>
-
-                <label for="mensagem">Mensagem</label>
-                <textarea id="mensagem" name="mensagem" required></textarea>
-
-                <button type="submit" class="form-submit-button">Enviar Mensagem</button>
-            </form>
-        </div>
-
     </div>
 </section>
 
 <footer class="footer-moderno">
-    <div class="container footer-grid">
-
-        <div class="col-info">
-            <a href="#inicio" class="logo">
-                   <img src="logo.png" alt="Manga Transportes Logo" style="height: 40px; margin-bottom: 20px;">
-            </a>
-            <p class="slogan-text">
-                Conectando o campo à sua mesa com segurança, pontualidade e responsabilidade.
-            </p>
-            <p class="description-text">
-                Excelência em transporte rural e logística integrada.
-            </p>
-        </div>
-
-        <div class="col-links">
-            <h4>Links Rápidos</h4>
-            <ul>
-                <li><a href="#servicos">Transporte de Trabalhadores</a></li>
-                <li><a href="#servicos">Fretamento para Cooperativas</a></li>
-                <li><a href="#servicos">Transporte para Eventos</a></li>
-                <li><a href="trabalhe-conosco.html" target="_blank">Trabalhe Conosco</a></li>
-                <li><a href="#contato">Solicitar Orçamento</a></li>
-            </ul>
-        </div>
-
-        <div class="col-contato">
-            <h4>Fale Conosco</h4>
-            <div class="contato-item">
-                <i class="fas fa-phone-alt"></i>
-                <a href="tel:+5544984385432">(44) 9 8438-5432</a>
-            </div>
-            <div class="contato-item">
-                <i class="fas fa-envelope"></i>
-                <a href="mailto:mangatransportes@gmail.com">mangatransportes@gmail.com.br</a>
-            </div>
+    <div class="container">
+        <div class="footer-grid">
             
+            <div class="col-info">
+                <h3 class="logo-text">Manga Transportes</h3>
+                <p class="slogan-text">Sua carga no campo, entregue com excelência.</p>
+                <p class="description-text">
+                    Líder em soluções logísticas para o agronegócio, garantindo a integridade e a pontualidade do seu produto. Conectamos o produtor ao mercado de forma eficiente.
+                </p>
+                
+                <div class="social-links animate-on-scroll">
+                    <a href="#" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                 
+                </div>
+            </div>
 
-            <div class="social-links">
-                <a href="https://wa.me/5544984385432" target="_blank" title="WhatsApp" class="animate-social"><i class="fab fa-whatsapp"></i></a>
-                <a href="#" target="_blank" title="Facebook" class="animate-social"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" target="_blank" title="Instagram" class="animate-social"><i class="fab fa-instagram"></i></a>
+            <div class="col-links">
+                <h4>Navegação</h4>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#sobre">Sobre Nós</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#feedbacks">Feedbacks</a></li>
+                    <li><a href="trabalhe-conosco.html" target="_blank">Trabalhe Conosco</a></li>
+                </ul>
+            </div>
+
+            <div class="col-contato">
+                <h4>Contato</h4>
+                <div class="contato-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+55 (44) 98438-5432</span>
+                </div>
+                <div class="contato-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>mangatransportes@gmail.com.br</span>
+                </div>
+                <div class="contato-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Brasilandia do Sul - PR, Brasil</span>
+                </div>
             </div>
         </div>
-
     </div>
-
     <div class="footer-copyright">
-        <div class="container">
-            <p>&copy; 2025 Manga Transportes. Todos os direitos reservados.</p>
-        </div>
+        &copy; 2024 Manga Transportes. Todos os direitos reservados. Desenvolvido por Natã Reis.
     </div>
 </footer>
 
-
 <script>
-    const toggle = document.querySelector(".menu-toggle");
-    const navMenu = document.querySelector(".nav-menu");
-    const menuLinks = document.querySelectorAll(".nav-menu a");
-    const body = document.body; 
-    const toggleIcon = toggle.querySelector('i'); 
+    // Script para o Menu Hamburguer no Mobile
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        const body = document.body;
+        const navLinks = document.querySelectorAll('.nav-menu a');
 
-    toggle.addEventListener("click", () => {
-        const isActive = navMenu.classList.toggle("active");
-        body.classList.toggle("menu-open", isActive); // Ativa o overlay e bloqueia o scroll
+        menuToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            body.classList.toggle('menu-open');
+        });
         
-        // Lógica para mudar o ícone (Hambúrguer <-> X)
-        if (isActive) {
-            toggleIcon.classList.remove("fa-bars");
-            toggleIcon.classList.add("fa-times"); 
-            toggle.style.color = 'var(--color-text-light)'; // Ícone 'X' branco
-        } else {
-            toggleIcon.classList.remove("fa-times");
-            toggleIcon.classList.add("fa-bars");
-            toggle.style.color = 'var(--color-secondary)'; // Ícone Hambúrguer laranja
-        }
-    });
+        // Fecha o menu ao clicar em um link
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                body.classList.remove('menu-open');
+            });
+        });
 
-    // Fechar o menu ao clicar em um link interno
-    menuLinks.forEach(link => {
-        link.addEventListener("click", () => {
-            // Verifica se é um link de âncora interna
-            if (link.getAttribute('href').startsWith('#')) { 
-                navMenu.classList.remove("active");
-                body.classList.remove("menu-open");
-                
-                // Volta o ícone para Hambúrguer
-                toggleIcon.classList.remove("fa-times");
-                toggleIcon.classList.add("fa-bars");
-                toggle.style.color = 'var(--color-secondary)';
-            }
+        // Script para Animação de Scroll (Fade-In)
+        const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+
+        const observerOptions = {
+            root: null, // viewport
+            rootMargin: '0px',
+            threshold: 0.2 // O elemento é considerado visível quando 20% dele estiver no viewport
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Para elementos que não devem repetir a animação, descomente a linha abaixo:
+                    // observer.unobserve(entry.target);
+                }
+                // Se quiser que a animação desfaça ao sair da tela, adicione um 'else' aqui:
+                /* else {
+                    entry.target.classList.remove('is-visible');
+                } */
+            });
+        }, observerOptions);
+
+        elementsToAnimate.forEach(element => {
+            observer.observe(element);
         });
     });
-
-    // --- LÓGICA DE OBSERVER PARA ANIMAÇÕES AO SCROLLAR ---
-    
-    // 1. Configuração do Observer para Fade-In/TranslateY
-    const fadeObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Adiciona a classe 'is-visible' para iniciar a animação de fade-in/up
-                entry.target.classList.add('is-visible');
-                // Para de observar depois de animar, economizando recursos
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        // Opções de configuração: 0.2 significa que o elemento deve estar 20% visível para disparar
-        threshold: 0.2 
-    });
-
-    // Aplica o observer a todos os elementos com a classe 'animate-on-scroll'
-    document.querySelectorAll('.animate-on-scroll').forEach(element => {
-        fadeObserver.observe(element);
-    });
-
-    // 2. Configuração do Observer para Ícones Sociais (Efeito Pop-In)
-    const socialObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Adiciona a classe 'is-visible' para disparar o keyframe 'popIn'
-                entry.target.querySelectorAll('.animate-social').forEach(socialLink => {
-                    socialLink.classList.add('is-visible');
-                });
-                // Observamos o container social-links e não os links individuais
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        // Um threshold menor para o rodapé (mais próximo do final da página)
-        threshold: 0.1 
-    });
-
-    // Aplica o observer no container das redes sociais
-    document.querySelectorAll('.social-links').forEach(element => {
-        socialObserver.observe(element);
-    });
-
 </script>
 </body>
 </html>
