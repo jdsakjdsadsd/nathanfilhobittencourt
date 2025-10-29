@@ -5,24 +5,22 @@
     <link rel="shortcut icon" type="imagex/png" href="logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manga Transportes - Sua Carga no Campo</title>
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-
-    <style>
-        :root {
-            --color-primary: #0a4f21; /* Verde Escuro */
+<style>:root {
+            --color-primary: #138e3c; /* Verde Escuro */
             --color-secondary: #FBAF29; /* Laranja */
             --color-text-dark: #333;
             --color-text-light: #fff;
             --color-background-light: #f5f5f5;
-            --color-background-white: #fff;
+            --color-background-white: #ffffff;
             --color-dark-footer: #181818; /* Novo: Tom mais escuro para o rodapé */
-            --color-footer-text: #ccc;
-            --color-footer-border: rgba(255, 255, 255, 0.1);
+            --color-footer-text: #f1f1f1;
+            --color-footer-border: rgb(0, 0, 0);
         }
 
         * {
@@ -84,9 +82,13 @@
             color: var(--color-text-light);
             padding: 10px 15px;
             font-weight: 600;
-            transition: color 0.3s;
+            transition: color 0.3s, text-decoration 0.3s; /* Adicione text-decoration aqui para suavizar a transição */
         }
-        .nav-menu a:hover { color: var(--color-secondary); }
+        .nav-menu a:hover { 
+            color: var(--color-secondary); 
+            /* 💡 ADICIONE ESTA LINHA PARA SUBINHAR AO PASSAR O MOUSE */
+            text-decoration: underline; 
+        }
         .cta-button {
     
     background-color: transparent; 
@@ -148,7 +150,7 @@
             opacity: 0;
             animation: fadeInUp 2s ease forwards 0.5s;
         }
-        .banner-text-content { max-width: 600px; }
+        .banner-text-content { max-width: 600px; text-align: left;}
         @keyframes fadeInUp {
             from { transform: translateY(calc(-50% + 20px)); opacity: 0; }
             to { transform: translateY(-50%); opacity: 1; }
@@ -212,17 +214,15 @@
         .social-links a:nth-child(3) { animation-delay: 0.3s; }
         /* --- FIM DAS ANIMAÇÕES SUTIS --- */
 
-        /* -------------------------------------------------------------------------- */
-        /* 🌟 SEÇÃO "SOBRE NÓS" (NOVO DESIGN - SEM IMAGEM) 🌟 */
-        /* -------------------------------------------------------------------------- */
         .about-us-reimagined { 
             padding: 120px 0; 
-            background-color: var(--color-background-white); 
+            background-color: black; 
             overflow: hidden; 
         }
 
         .about-content-wrapper { 
             display: flex; 
+            
             align-items: center; /* Alinha verticalmente */
             justify-content: center;
             max-width: 900px; /* Largura ajustada para o texto */
@@ -230,7 +230,7 @@
         }
 
         .about-content-text { 
-            background-color: var(--color-background-white);
+            background-color: black;
             padding: 40px; /* Padding para o conteúdo do texto */
             border-radius: 16px;
             box-shadow: 0 15px 80px rgba(0,0,0,0.05); /* Mantido para dar profundidade sem a imagem */
@@ -267,7 +267,7 @@
         .about-content-text p { 
             margin-bottom: 30px; 
             font-size: 1.05rem; 
-            color: #444; 
+            color: #ffffff; 
             line-height: 1.7; 
         }
 
@@ -291,8 +291,8 @@
             color: var(--color-secondary); 
             border-radius: 50%; 
             display: flex; 
-            align-items: center; 
-            justify-content: center; 
+            align-items: left; 
+            justify-content:left; 
             font-size: 24px; 
             transition: all 0.3s ease; 
         }
@@ -311,7 +311,7 @@
             margin-bottom: 0; 
             font-size: 0.95rem; 
             line-height: 1.6; 
-            color: #555; 
+            color: #ffffff; 
         }
         /* -------------------------------------------------------------------------- */
         /* 🌟 FIM DA SEÇÃO "SOBRE NÓS" (NOVO DESIGN - SEM IMAGEM) 🌟 */
@@ -662,7 +662,7 @@
         /* Responsividade - Geral */
         @media (max-width: 992px) {
             .banner-text h1 { font-size: 2.2rem; }
-            .about-content-text .section-title, .feedbacks .section-title, .contact-section .section-title { font-size: 36px; } 
+            .about-content-text .section-title, .feedbacks .section-title, .contact-section .section-title { font-size: 56px; } 
             .proof-item h3 { font-size: 2.5rem; }
             .proof-points { padding: 60px 0; }
             .contact-content {
@@ -878,9 +878,7 @@
             .feedback-grid {
                 padding: 0 10px; /* Adiciona um pequeno padding para não colar na borda */
             }
-        }
-
-    </style>
+        }</style>
 </head>
 <body>
 <header class="header">
@@ -920,7 +918,7 @@
 <section id="sobre" class="about-us-reimagined">
     <div class="container">
         <div class="about-content-wrapper">
-            <!-- Coluna de Texto (agora ocupando toda a largura disponível) -->
+            
             <div class="about-content-text animate-on-scroll">
                 <span class="section-tagline">Desde 2021</span>
                 <h2 class="section-title">Quem somos?</h2>
@@ -1006,7 +1004,7 @@
 
 <section id="feedbacks" class="feedbacks">
     <div class="container">
-        <h2 class="section-title animate-on-scroll">O que nossos clientes dizem</h2>
+        <h1 class="section-title animate-on-scroll">O que nossos clientes dizem</h1>
         <p class="section-subtitle animate-on-scroll">A satisfação dos nossos parceiros é o nosso maior combustível. Veja alguns depoimentos:</p>
         
         <!-- Swiper Container sempre ativo -->
@@ -1061,21 +1059,7 @@
                     </p>
                 </div>
 
-                <div class="feedback-card swiper-slide animate-on-scroll">
-                    <div class="feedback-header">
-                        <img src="avatar4.png" alt="Avatar Cliente 4" class="feedback-avatar">
-                        <div class="feedback-info">
-                            <h4>Ana Costa</h4>
-                            <span>Organizador de Eventos</span>
-                        </div>
-                    </div>
-                    <div class="feedback-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="feedback-text">
-                        "A Manga Transportes foi fundamental para o sucesso do nosso último evento rural. A equipe é super atenciosa e o transporte foi impecável."
-                    </p>
-                </div>
+            
 
             </div>
             <!-- Adicione a paginação aqui -->
