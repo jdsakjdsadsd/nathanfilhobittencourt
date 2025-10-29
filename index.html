@@ -69,7 +69,7 @@
         
         /* 💡 ESTILO DA LOGO ATUALIZADO */
         .logo img { 
-            height: 50px; /* Ajuste o tamanho da altura conforme sua logo */
+            height: 60px; /* Ajuste o tamanho da altura conforme sua logo */
             width: auto;
             display: block; /* Garante que a imagem se comporta bem */
         }
@@ -88,17 +88,21 @@
         }
         .nav-menu a:hover { color: var(--color-secondary); }
         .cta-button {
-            background-color: var(--color-secondary);
-            color: var(--color-text-light);
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            display: inline-block;
-            margin-top: 0; 
-            line-height: 1;
-        }
+    
+    background-color: transparent; 
+    color: var(--color-secondary);           /* Cor do texto: Verde Escuro */
+    border: 2px solid var(--color-secondary); /* Borda com a cor primária */
+    /* Fim das alterações do NOVO ESTILO */
+
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-top: 0; 
+    line-height: 1;
+}
         .cta-button:hover { 
             background-color: #e56d00; 
             transform: translateY(-2px);
@@ -820,6 +824,43 @@
                 grid-column: auto;
             }
         }
+        /* --- NOVO ESTILO PARA O LINK "Nossa História" --- */
+
+.story-link {
+    
+    display: inline-flex; /* Para alinhar o texto e o ícone */
+    align-items: center;
+    gap: 8px; /* Espaço entre o texto e a seta */
+    
+    background-color: transparent; /* Remove o fundo */
+    border: none; /* Remove a borda */
+    
+    color: var(--color-secondary); /* Cor do texto: Verde Escuro */
+    font-weight: 700;
+    text-decoration: none; /* Remove sublinhado padrão */
+    font-family: 'Montserrat', sans-serif; /* Usar a fonte de destaque */
+    font-size: 1.1rem; /* Um pouco maior que o texto padrão */
+    
+    padding: 10px 0; /* Padding vertical para área de clique */
+    transition: all 0.3s ease;
+}
+
+/* Estilo para a seta */
+.story-link i {
+    font-size: 1rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Efeito Hover: Destaca a cor e move a seta para a direita */
+.story-link:hover {
+    color: var(--color-secondary); /* Cor de destaque: Laranja */
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+}
+
+.story-link:hover i {
+    transform: translateX(5px); /* Move a seta 5px para a direita */
+    color: var(--color-secondary);
+}
 
         @media (max-width: 480px) {
             .banner-text h1 { font-size: 1.6rem; }
@@ -838,6 +879,7 @@
                 padding: 0 10px; /* Adiciona um pequeno padding para não colar na borda */
             }
         }
+
     </style>
 </head>
 <body>
@@ -854,7 +896,7 @@
             <a href="#sobre">Sobre Nós</a>
             <a href="#servicos">Serviços</a>
             <a href="#feedbacks">Feedbacks</a> <a href="#contato">Contato</a>
-            <a href="trabalhe-conosco.html" target="_blank">Trabalhe Conosco</a>
+            
             <a href="https://wa.me/5544984385432" target="_blank" class="cta-button menu-cta">
                 Solicitar Orçamento
             </a>
@@ -868,8 +910,8 @@
         <div class="banner-text">
             <div class="banner-text-content">
                 <h1>Bem-vindo a Manga Transportes!</h1>
-                <p>Conectando o campo à sua mesa, com agilidade, segurança e responsabilidade.</p>
-                <a href="https://wa.me/5544984385432" target="_blank" class="cta-button">Solicitar Orçamento</a>
+                <p>Especialista em transporte de trabalhadores rurais.</p>
+                <a href="#sobre" class="cta-button">Saiba Mais</a>
             </div>
         </div>
     </div>
@@ -909,7 +951,7 @@
                         </div>
                     </li>
                 </ul>
-                <a href="historia.html" class="cta-button">Nossa História</a>
+                <a href="historia.html" class="story-link">Nossa História <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </div>
