@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="shortcut icon" type="imagex/png" href="logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manga Transportes - Sua Carga no Campo</title>
+    <title>Manga Transportes - Transportes Rural</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
@@ -156,7 +156,7 @@
             to { transform: translateY(-50%); opacity: 1; }
         }
         .banner-text h1 { font-family: 'Montserrat', sans-serif; font-size: 3rem; font-weight: 700; margin-bottom: 15px; }
-        .banner-text p { font-size: 1.2rem; margin-bottom: 20px; }
+        .banner-text p { font-size: 1.5rem; margin-bottom: 20px; }
         .banner-container::after {
             content: '';
             position: absolute;
@@ -216,24 +216,24 @@
 
         .about-us-reimagined { 
             padding: 120px 0; 
-            background-color: black; 
+            background-color: rgb(255, 255, 255); 
             overflow: hidden; 
         }
 
         .about-content-wrapper { 
             display: flex; 
             
-            align-items: center; /* Alinha verticalmente */
+            align-items: left; /* Alinha verticalmente */
             justify-content: center;
             max-width: 900px; /* Largura ajustada para o texto */
-            margin: 0 auto;
+            
         }
 
         .about-content-text { 
-            background-color: black;
-            padding: 40px; /* Padding para o conteúdo do texto */
+            background-color: rgb(255, 255, 255);
+            padding: 0px; /* Padding para o conteúdo do texto */
             border-radius: 16px;
-            box-shadow: 0 15px 80px rgba(0,0,0,0.05); /* Mantido para dar profundidade sem a imagem */
+            
             width: 100%;
             opacity: 0;
             transform: translateY(20px); 
@@ -267,7 +267,7 @@
         .about-content-text p { 
             margin-bottom: 30px; 
             font-size: 1.05rem; 
-            color: #ffffff; 
+            color: #000000; 
             line-height: 1.7; 
         }
 
@@ -291,8 +291,8 @@
             color: var(--color-secondary); 
             border-radius: 50%; 
             display: flex; 
-            align-items: left; 
-            justify-content:left; 
+            align-items: center; 
+            justify-content:center; 
             font-size: 24px; 
             transition: all 0.3s ease; 
         }
@@ -309,9 +309,10 @@
         }
         .value-text p { 
             margin-bottom: 0; 
+            font-family: Arial, Helvetica, sans-serif;
             font-size: 0.95rem; 
             line-height: 1.6; 
-            color: #ffffff; 
+            color: #000000; 
         }
         /* -------------------------------------------------------------------------- */
         /* 🌟 FIM DA SEÇÃO "SOBRE NÓS" (NOVO DESIGN - SEM IMAGEM) 🌟 */
@@ -324,6 +325,7 @@
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
             gap: 40px; 
+            margin: 0;
             position: relative; 
         }
 
@@ -680,10 +682,12 @@
             /* Sobre Nós - Layout ajustado para telas médias (sem imagem) */
             .about-content-wrapper {
                 flex-direction: column;
+                text-align: justify;
                 gap: 40px;
             }
             .about-content-text {
                 max-width: 100%; 
+                text-align: justify;
                 transform: translateY(0); 
                 transition: none; 
                 opacity: 1; 
@@ -904,7 +908,7 @@
 
 <section id="inicio" class="hero">
     <div class="banner-container">
-        <img src="boasvindas.png" alt="Caminhão da Manga Transportes" class="banner-image">
+        <img src="boasvindas.png" alt="Onibus da Manga Transportes" class="banner-image">
         <div class="banner-text">
             <div class="banner-text-content">
                 <h1>Bem-vindo a Manga Transportes!</h1>
@@ -923,7 +927,7 @@
                 <span class="section-tagline">Desde 2021</span>
                 <h2 class="section-title">Quem somos?</h2>
                 <p>
-                    A <strong>Manga Transportes</strong> nasceu da visão de criar pontes entre o produtor rural e o mercado, oferecendo soluções logísticas que unem tecnologia, segurança e um profundo respeito pelo agronegócio. Cada jornada é um compromisso com a excelência.
+                    A <strong>Manga Transportes</strong> nasceu da visão de criar pontes entre o produtor rural e o mercado, oferecendo soluções logísticas que unem tecnologia, segurança e um profundo respeito pelo agronegócio. Cada jornada é um compromisso com a excelência. nasceu da visão de criar pontes entre o produtor rural e o mercado, oferecendo soluções logísticas que unem tecnologia, segurança e um profundo respeito pelo agronegócio. Cada jornada é um compromisso com a excelência.
                 </p>
                 
                 <ul class="values-list">
@@ -957,7 +961,7 @@
 
 <section class="proof-points animate-on-scroll">
     <div class="container proof-grid">
-        <div class="proof-item animate-on-scroll">
+        <div class="proof-item animate-on-scroll"> 
             <h3>+3 Anos</h3>
             <p>De experiência no agronegócio</p>
         </div>
