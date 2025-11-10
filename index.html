@@ -106,7 +106,8 @@
     line-height: 1;
 }
         .cta-button:hover { 
-            background-color: #e56d00; 
+            background-color:rgb(243, 212, 39);
+            color: rgb(0, 0, 0);
             transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
@@ -373,6 +374,120 @@
         
         .service-card h3 { font-family: 'Montserrat', sans-serif; font-size: 22px; color: var(--color-primary); margin-bottom: 15px; }
         .service-card p { font-size: 0.95rem; color: #555; line-height: 1.5; }
+
+/* Seção de Frota */
+.fleet-section {
+    padding: 100px 0;
+    background-color: var(--color-background-white); /* Fundo branco */
+    text-align: center;
+}
+
+.fleet-section .section-tagline {
+    /* Manter o estilo existente */
+    display: block; 
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 700; 
+    color: var(--color-secondary); 
+    margin-bottom: 10px; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    font-size: 1rem; 
+}
+
+.fleet-section .section-title { 
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 35px; 
+    margin-bottom: 10px; 
+    color: var(--color-text-dark); /* Cor mais escura para o título */
+    text-align: center; 
+}
+
+.fleet-section .section-subtitle { 
+    font-size: 1.1rem; 
+    color: #666; 
+    margin-bottom: 60px; 
+    max-width: 700px; 
+    margin-left: auto; 
+    margin-right: auto; 
+    text-align: center; 
+}
+
+.fleet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fleet-grid.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.vehicle-card {
+    background: var(--color-background-white);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    overflow: hidden; /* Para garantir que a imagem fique dentro */
+    text-align: left;
+    border: 1px solid #eee;
+    padding-bottom: 25px;
+}
+
+.vehicle-image-container {
+    position: relative;
+    height: 220px; /* Altura fixa para as imagens */
+    margin-bottom: 20px;
+}
+
+.vehicle-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.capacity-tag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--color-primary); /* Verde Escuro */
+    color: var(--color-text-light);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    z-index: 10;
+}
+
+.vehicle-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem;
+    color: var(--color-text-dark);
+    padding: 0 25px;
+    margin-bottom: 15px;
+}
+
+.features-list {
+    list-style: none;
+    padding: 0 25px;
+}
+
+.features-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.features-list i {
+    color: var(--color-primary); /* Icone verde */
+    font-size: 1rem;
+}
 
         /* Seção de Feedbacks */
         .feedbacks {
@@ -897,7 +1012,8 @@
             <a href="#inicio">Início</a>
             <a href="#sobre">Sobre Nós</a>
             <a href="#servicos">Serviços</a>
-            <a href="#feedbacks">Feedbacks</a> <a href="#contato">Contato</a>
+            <a href="#feedbacks">Feedbacks</a> 
+           <a href="#frota">Nossa Frota</a>
             
             <a href="https://wa.me/5544984385432" target="_blank" class="cta-button menu-cta">
                 Solicitar Orçamento
@@ -1005,7 +1121,58 @@
         </div>
     </div>
 </section>
+<section id="frota" class="fleet-section">
+    <div class="container">
+        <span class="section-tagline">Nossa Frota</span>
+        <h2 class="section-title animate-on-scroll">Veículos Modernos e Seguros</h2>
+        <p class="section-subtitle animate-on-scroll">
+            Contamos com uma frota diversificada para atender diferentes necessidades de transporte.
+        </p>
 
+        <div class="fleet-grid animate-on-scroll">
+
+            <div class="vehicle-card">
+                <div class="vehicle-image-container">
+                    <img src="bus1.avif" alt="Micro-ônibus Executivo">
+                    <span class="capacity-tag green-tag">20 passageiros</span>
+                </div>
+                <h3>Micro-ônibus Executivo</h3>
+                <ul class="features-list">
+                    <li><i class="fas fa-check-circle"></i> Ar condicionado</li>
+                    <li><i class="fas fa-check-circle"></i> Poltronas reclináveis</li>
+                    <li><i class="fas fa-check-circle"></i> Som ambiente</li>
+                </ul>
+            </div>
+
+            <div class="vehicle-card">
+                <div class="vehicle-image-container">
+                    <img src="bus2.webp" alt="Ônibus Standard">
+                    <span class="capacity-tag green-tag">44 passageiros</span>
+                </div>
+                <h3>Ônibus Standard</h3>
+                <ul class="features-list">
+                    <li><i class="fas fa-check-circle"></i> Ventilação forçada</li>
+                    <li><i class="fas fa-check-circle"></i> Assentos confortáveis</li>
+                    <li><i class="fas fa-check-circle"></i> Porta-pacotes</li>
+                </ul>
+            </div>
+
+            <div class="vehicle-card">
+                <div class="vehicle-image-container">
+                    <img src="bus3.jpg" alt="Ônibus Rodoviário">
+                    <span class="capacity-tag green-tag">50 passageiros</span>
+                </div>
+                <h3>Ônibus Rodoviário</h3>
+                <ul class="features-list">
+                    <li><i class="fas fa-check-circle"></i> Ar condicionado</li>
+                    <li><i class="fas fa-check-circle"></i> Banheiro</li>
+                    <li><i class="fas fa-check-circle"></i> TV/DVD</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
 <section id="feedbacks" class="feedbacks">
     <div class="container">
         <h1 class="section-title animate-on-scroll">O que nossos clientes dizem</h1>
