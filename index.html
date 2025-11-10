@@ -77,18 +77,47 @@
             gap: 15px;
             align-items: center;
         }
+        /* -------------------------------------------------------------------------- */
+        /* 🌟 NOVO EFEITO DE MENU: SUBLINHADO ANIMADO (INSPIRADO EM INSIDE SISTEMAS) 🌟 */
+        /* -------------------------------------------------------------------------- */
         .nav-menu a {
             text-decoration: none;
             color: var(--color-text-light);
-            padding: 10px 15px;
+            padding: 10px 0px; /* Reduz o padding horizontal */
+            margin: 0 8px; /* Adiciona margem horizontal para espaçamento */
             font-weight: 600;
-            transition: color 0.3s, text-decoration 0.3s; /* Adicione text-decoration aqui para suavizar a transição */
+            transition: color 0.3s; 
+            position: relative; /* Necessário para posicionar o pseudo-elemento */
+            display: inline-block; /* Garante que o link ocupe apenas o espaço necessário */
         }
+        
+        /* O Pseudo-elemento que será a linha de baixo */
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0; /* Começa com largura zero */
+            height: 2px;
+            bottom: -5px; /* Posição abaixo do texto */
+            left: 50%; /* Ponto de partida do meio */
+            background-color: var(--color-secondary); /* Cor Laranja */
+            transition: width 0.3s ease-out, left 0.3s ease-out; /* Transição para a largura e posição */
+        }
+        
         .nav-menu a:hover { 
-            color: var(--color-secondary); 
-            /* 💡 ADICIONE ESTA LINHA PARA SUBINHAR AO PASSAR O MOUSE */
-            text-decoration: underline; 
+            color: var(--color-secondary); /* Apenas muda a cor do texto */
+            text-decoration: none; /* Garante que o sublinhado nativo não apareça */
         }
+        
+        /* Efeito Hover: A linha se expande do centro para as bordas */
+        .nav-menu a:hover::after {
+            width: 100%;
+            left: 0; /* Move o ponto de partida para a esquerda */
+        }
+        /* -------------------------------------------------------------------------- */
+        /* 🌟 FIM DO NOVO EFEITO DE MENU 🌟 */
+        /* -------------------------------------------------------------------------- */
+
+
         .cta-button {
     
     background-color: transparent; 
@@ -156,7 +185,12 @@
             from { transform: translateY(calc(-50% + 20px)); opacity: 0; }
             to { transform: translateY(-50%); opacity: 1; }
         }
-        .banner-text h1 { font-family: 'Montserrat', sans-serif; font-size: 3rem; font-weight: 700; margin-bottom: 15px; }
+        .banner-text h1 { 
+            font-family: 'Montserrat', sans-serif; 
+            font-size: 3rem; 
+            font-weight: 700; 
+            margin-bottom: 15px; 
+        }
         .banner-text p { font-size: 1.5rem; margin-bottom: 20px; }
         .banner-container::after {
             content: '';
@@ -165,6 +199,30 @@
             background-color: rgba(0,0,0,0.4);
             z-index: 0;
         }
+        
+        /* --- NOVO: Estilo para o Efeito de Escrita --- */
+        .typing-text-wrapper {
+            display: flex; /* Para centralizar o cursor */
+            align-items: center;
+            justify-content: flex-start; /* Alinha o texto à esquerda dentro do wrapper */
+            margin-bottom: 15px; /* Mantém o espaçamento original do h1 */
+        }
+
+        /* O cursor piscante */
+        .typing-text-wrapper::after {
+            content: '|';
+            display: inline-block;
+            color: var(--color-secondary);
+            font-size: 3rem; /* Tamanho do cursor igual ao h1 */
+            font-weight: 700;
+            margin-left: 5px;
+            animation: blinkCursor 0.7s infinite step-start;
+        }
+
+        @keyframes blinkCursor {
+            50% { opacity: 0; }
+        }
+        /* --- FIM: Estilo para o Efeito de Escrita --- */
 
         /* --- ANIMAÇÕES SUTIS DE APARECIMENTO (FADE-IN) --- */
         
@@ -317,6 +375,87 @@
         }
         /* -------------------------------------------------------------------------- */
         /* 🌟 FIM DA SEÇÃO "SOBRE NÓS" (NOVO DESIGN - SEM IMAGEM) 🌟 */
+        /* -------------------------------------------------------------------------- */
+
+
+        /* -------------------------------------------------------------------------- */
+        /* 🌟 SEÇÃO "SOBRE NÓS" - NOVO LAYOUT INSTITUCIONAL (2 COLUNAS) 🌟 */
+        /* -------------------------------------------------------------------------- */
+        @media (min-width: 993px) { 
+            .about-content-wrapper.about-institutional-grid {
+                display: grid;
+                grid-template-columns: 1.5fr 1fr; /* Primeira coluna maior para o texto principal */
+                gap: 80px;
+                max-width: 1200px; /* Expande um pouco mais */
+                align-items: flex-start; /* Alinha o conteúdo ao topo */
+                justify-content: center;
+            }
+
+            .about-intro-column {
+                /* Garante que o texto principal fique alinhado */
+                padding-right: 20px;
+            }
+        }
+
+        /* Título da seção de valores */
+        .about-values-column {
+            background-color: var(--color-background-light); /* Fundo claro para o bloco de valores */
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid var(--color-primary); /* Destaque institucional */
+            /* Garante animação se estiver no desktop/tablet, no mobile o CSS de media query abaixo já lida */
+            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+        }
+
+        .about-values-column .values-title {
+            font-family: 'Montserrat', sans-serif; 
+            font-size: 1.4rem; 
+            color: var(--color-primary); 
+            margin-bottom: 25px; 
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #eee;
+        }
+
+        /* Ajuste dos ícones de valor */
+        .about-values-column .value-icon { 
+            flex-shrink: 0;
+            width: 45px; /* Ícone um pouco menor */
+            height: 45px; 
+            font-size: 20px; 
+            background-color: var(--color-primary); /* Cor primária */
+            color: var(--color-text-light);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+        }
+
+        .about-values-column .values-list li:hover .value-icon { 
+            background-color: var(--color-secondary); /* Hover laranja */
+            transform: scale(1.05); /* Efeito de hover mais sutil */
+        }
+
+        /* Responsividade para tablets/mobile */
+        @media (max-width: 992px) {
+            .about-content-wrapper.about-institutional-grid {
+                display: flex; /* Volta ao flex para empilhar */
+                flex-direction: column;
+                gap: 40px;
+            }
+            .about-intro-column, .about-values-column {
+                max-width: 100%;
+            }
+
+            /* Sobrescreve a regra original de responsividade para garantir que a coluna de texto principal se ajuste */
+            .about-content-text {
+                 max-width: 100%; 
+                 text-align: justify;
+                 transform: translateY(0); 
+                 transition: none; 
+                 opacity: 1;
+            }
+        }
+        /* -------------------------------------------------------------------------- */
+        /* 🌟 FIM DO NOVO LAYOUT INSTITUCIONAL 🌟 */
         /* -------------------------------------------------------------------------- */
 
 
@@ -900,8 +1039,17 @@
                 color: var(--color-footer-text); 
                 border-bottom: 1px solid var(--color-footer-border); 
                 transition: background-color 0.3s ease, color 0.3s ease, padding 0.3s ease;
+                
+                /* Remove a animação customizada no Mobile/Tablet, volta ao normal */
+                position: static; 
             }
             
+            /* Garante que o pseudo-elemento seja removido no mobile para não atrapalhar a borda */
+            .nav-menu a::after {
+                content: none;
+            }
+
+
             .nav-menu .cta-button {
                 margin-top: 20px;
                 padding: 15px 20px;
@@ -954,7 +1102,7 @@
     background-color: transparent; /* Remove o fundo */
     border: none; /* Remove a borda */
     
-    color: var(--color-secondary); /* Cor do texto: Verde Escuro */
+    color: var(--color-primary); /* Cor do texto principal */
     font-weight: 700;
     text-decoration: none; /* Remove sublinhado padrão */
     font-family: 'Montserrat', sans-serif; /* Usar a fonte de destaque */
@@ -967,6 +1115,7 @@
 /* Estilo para a seta */
 .story-link i {
     font-size: 1rem;
+    color: var(--color-secondary);
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
@@ -1027,7 +1176,9 @@
         <img src="boasvindas.png" alt="Onibus da Manga Transportes" class="banner-image">
         <div class="banner-text">
             <div class="banner-text-content">
-                <h1>Bem-vindo a Manga Transportes!</h1>
+                <h1 class="typing-text-wrapper">
+                    <span id="typing-text"></span>
+                </h1>
                 <p>Especialista em transporte de trabalhadores rurais.</p>
                 <a href="#sobre" class="cta-button">Saiba Mais</a>
             </div>
@@ -1037,40 +1188,44 @@
 
 <section id="sobre" class="about-us-reimagined">
     <div class="container">
-        <div class="about-content-wrapper">
+        <div class="about-content-wrapper about-institutional-grid">
             
-            <div class="about-content-text animate-on-scroll">
+            <div class="about-content-text about-intro-column animate-on-scroll">
                 <span class="section-tagline">Desde 2021</span>
                 <h2 class="section-title">Quem somos?</h2>
                 <p>
-                    A <strong>Manga Transportes</strong> nasceu da visão de criar pontes entre o produtor rural e o mercado, oferecendo soluções logísticas que unem tecnologia, segurança e um profundo respeito pelo agronegócio. Cada jornada é um compromisso com a excelência. nasceu da visão de criar pontes entre o produtor rural e o mercado, oferecendo soluções logísticas que unem tecnologia, segurança e um profundo respeito pelo agronegócio. Cada jornada é um compromisso com a excelência.
+                    A <strong>Manga Transportes</strong> nasceu em 2021 com a missão de criar pontes sólidas entre o produtor rural e o mercado, oferecendo soluções logísticas que unem tecnologia, segurança e um profundo respeito pelo agronegócio. Nossa visão é ser a principal parceira no transporte de trabalhadores rurais e no apoio à cadeia produtiva do campo.
                 </p>
-                
+                <a href="historia.html" class="story-link">Conheça Nossa História <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="about-values-column animate-on-scroll" style="transition-delay: 0.3s;">
+                <h3 class="values-title">Nossos Valores Fundamentais</h3>
                 <ul class="values-list">
                     <li>
                         <div class="value-icon"><i class="fas fa-shield-alt"></i></div>
                         <div class="value-text">
                             <h3>Segurança Inegociável</h3>
-                            <p>Sua carga e sua equipe transportadas com a máxima responsabilidade.</p>
+                            <p>Garantimos sua carga e equipe transportadas com a máxima responsabilidade e conformidade.</p>
                         </div>
                     </li>
                     <li>
                         <div class="value-icon"><i class="fas fa-clock"></i></div>
                         <div class="value-text">
-                            <h3>Pontualidade Britânica</h3>
-                            <p>Respeitamos sua logística e garantimos entregas sempre no prazo.</p>
+                            <h3>Pontualidade e Confiança</h3>
+                            <p>Respeitamos rigorosamente seus prazos, assegurando a eficiência da sua cadeia logística.</p>
                         </div>
                     </li>
                     <li>
                         <div class="value-icon"><i class="fas fa-leaf"></i></div>
                         <div class="value-text">
-                            <h3>Operação Sustentável</h3>
-                            <p>Práticas que cuidam do meio ambiente em cada etapa do transporte.</p>
+                            <h3>Sustentabilidade</h3>
+                            <p>Compromisso com práticas que minimizam o impacto ambiental em todas as operações.</p>
                         </div>
                     </li>
                 </ul>
-                <a href="historia.html" class="story-link">Nossa História <i class="fas fa-arrow-right"></i></a>
             </div>
+            
         </div>
     </div>
 </section>
@@ -1178,7 +1333,6 @@
         <h1 class="section-title animate-on-scroll">O que nossos clientes dizem</h1>
         <p class="section-subtitle animate-on-scroll">A satisfação dos nossos parceiros é o nosso maior combustível. Veja alguns depoimentos:</p>
         
-        <!-- Swiper Container sempre ativo -->
         <div class="feedback-grid swiper-container">
             <div class="swiper-wrapper">
                 
@@ -1233,13 +1387,9 @@
             
 
             </div>
-            <!-- Adicione a paginação aqui -->
             <div class="swiper-pagination"></div>
 
-            <!-- As setas de navegação foram removidas/ocultadas -->
-            <!-- <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div> -->
-        </div>
+            </div>
     </div>
 </section>
 
@@ -1280,12 +1430,10 @@
 
                     <button type="submit" class="form-submit-button">Enviar Mensagem</button>
                 </form>
-                <!-- Início da seção de Termos de Privacidade adicionada -->
                 <p class="privacy-terms">
                     Ao enviar esta mensagem, você concorda com nossa <a href="politica-privacidade.html" target="_blank">Política de Privacidade</a>.
                 </p>
-                <!-- Fim da seção de Termos de Privacidade adicionada -->
-            </div>
+                </div>
         </div>
     </div>
 </section>
@@ -1314,12 +1462,16 @@
                     <li><a href="#sobre">Sobre Nós</a></li>
                     <li><a href="#servicos">Serviços</a></li>
                     <li><a href="#feedbacks">Feedbacks</a></li>
-                    
+                    <li><a href="politica-privacidade.html" target="_blank">Termos de Privacidade</a></li>
                 </ul>
             </div>
 
             <div class="col-contato">
                 <h4>Contato</h4>
+                <div class="contato-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Segunda a Sexta: 08:00 - 18:00</span>
+                </div>
                 <div class="contato-item">
                     <i class="fas fa-phone-alt"></i>
                     <span>+55 (44) 98438-5432</span>
@@ -1341,7 +1493,6 @@
     </div>
 </footer>
 
-<!-- Swiper JS -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <script>
@@ -1391,6 +1542,30 @@
         elementsToAnimate.forEach(element => {
             observer.observe(element);
         });
+        
+        // --- NOVO: Script para Efeito de Escrita (Typing Effect) ---
+        function typeEffect(elementId, text, speed) {
+            const element = document.getElementById(elementId);
+            let i = 0;
+            
+            // Inicia a função de escrita, garantindo que o elemento exista
+            if (element) {
+                function type() {
+                    if (i < text.length) {
+                        element.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(type, speed);
+                    }
+                }
+                type();
+            }
+        }
+
+        // Inicia o efeito 1 segundo após o DOM carregar
+        setTimeout(() => {
+            typeEffect('typing-text', 'Bem-vindo a Manga Transportes!', 70); // 70ms é a velocidade de digitação
+        }, 1000);
+        // --- FIM: Script para Efeito de Escrita (Typing Effect) ---
 
         // Inicialização do Swiper para Feedbacks
         let feedbackSwiper = null;
@@ -1406,11 +1581,13 @@
             if (window.innerWidth >= 993) {
                 // Em desktop, não inicializa o Swiper para manter o layout de grid CSS
                 // Garante que a paginação esteja oculta
-                document.querySelector('.swiper-pagination').style.display = 'none';
+                const pagination = document.querySelector('.swiper-pagination');
+                if (pagination) pagination.style.display = 'none';
                 return; 
             } else {
                 // Em mobile/tablet, garante que a paginação esteja visível
-                document.querySelector('.swiper-pagination').style.display = 'block';
+                const pagination = document.querySelector('.swiper-pagination');
+                if (pagination) pagination.style.display = 'block';
             }
 
             // Inicializa o Swiper para mobile e tablet
