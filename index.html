@@ -9,1161 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-<style>:root {
-            --color-primary: #138e3c; /* Verde Escuro */
-            --color-secondary: #FBAF29; /* Laranja */
-            --color-text-dark: #333;
-            --color-text-light: #fff;
-            --color-background-light: #f5f5f5;
-            --color-background-white: #ffffff;
-            --color-dark-footer: #181818; /* Novo: Tom mais escuro para o rodapé */
-            --color-footer-text: #f1f1f1;
-            --color-footer-border: rgb(0, 0, 0);
-        }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
 
-        html { scroll-behavior: smooth; }
 
-        body {
-            font-family: 'Open Sans', sans-serif;
-            color: var(--color-text-dark);
-            background-color: var(--color-background-light);
-            line-height: 1.6;
-            overflow-x: hidden; 
-        }
-
-        /* Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header (Estilos Omitidos para Concisão - Mantidos Originais) */
-        .header {
-            padding: 20px 0;
-            background-color: transparent;
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-        .header-content-wrapper {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-        }
-        
-        /* 💡 ESTILO DA LOGO ATUALIZADO */
-        .logo img { 
-            height: 60px; /* Ajuste o tamanho da altura conforme sua logo */
-            width: auto;
-            display: block; /* Garante que a imagem se comporta bem */
-        }
-        
-        .nav-menu {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-        /* -------------------------------------------------------------------------- */
-        /* 🌟 NOVO EFEITO DE MENU: SUBLINHADO ANIMADO (INSPIRADO EM INSIDE SISTEMAS) 🌟 */
-        /* -------------------------------------------------------------------------- */
-        .nav-menu a {
-            text-decoration: none;
-            color: var(--color-text-light);
-            padding: 10px 0px; /* Reduz o padding horizontal */
-            margin: 0 8px; /* Adiciona margem horizontal para espaçamento */
-            font-weight: 600;
-            transition: color 0.3s; 
-            position: relative; /* Necessário para posicionar o pseudo-elemento */
-            display: inline-block; /* Garante que o link ocupe apenas o espaço necessário */
-        }
-        
-        /* O Pseudo-elemento que será a linha de baixo */
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            width: 0; /* Começa com largura zero */
-            height: 2px;
-            bottom: -5px; /* Posição abaixo do texto */
-            left: 50%; /* Ponto de partida do meio */
-            background-color: var(--color-secondary); /* Cor Laranja */
-            transition: width 0.3s ease-out, left 0.3s ease-out; /* Transição para a largura e posição */
-        }
-        
-        .nav-menu a:hover { 
-            color: var(--color-secondary); /* Apenas muda a cor do texto */
-            text-decoration: none; /* Garante que o sublinhado nativo não apareça */
-        }
-        
-        /* Efeito Hover: A linha se expande do centro para as bordas */
-        .nav-menu a:hover::after {
-            width: 100%;
-            left: 0; /* Move o ponto de partida para a esquerda */
-        }
-        /* -------------------------------------------------------------------------- */
-        /* 🌟 FIM DO NOVO EFEITO DE MENU 🌟 */
-        /* -------------------------------------------------------------------------- */
-
-
-        .cta-button {
-    
-    background-color: transparent; 
-    color: var(--color-secondary);           /* Cor do texto: Verde Escuro */
-    border: 2px solid var(--color-secondary); /* Borda com a cor primária */
-    /* Fim das alterações do NOVO ESTILO */
-
-    padding: 12px 25px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: 700;
-    transition: all 0.3s ease;
-    display: inline-block;
-    margin-top: 0; 
-    line-height: 1;
-}
-        .cta-button:hover { 
-            background-color:rgb(243, 212, 39);
-            color: rgb(0, 0, 0);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-        .cta-button.menu-cta {
-            background-color: var(--color-secondary);
-            color: var(--color-text-light);
-            padding: 10px 20px;
-            margin-left: 10px;
-            margin-top: 0;
-        }
-        
-        /* 🎨 Estilo do Ícone Hamburguer no Mobile */
-        .menu-toggle {
-            display: none;
-            font-size: 28px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--color-secondary); 
-            transition: color 0.3s ease;
-        }
-
-        /* --- NOVAS REGRAS PARA O 'X' --- */
-        /* Esconde o ícone de fechar por padrão */
-        .menu-toggle .icon-close {
-            display: none;
-        }
-
-        /* Quando o botão estiver ativo (menu aberto) */
-        .menu-toggle.active .icon-open {
-            display: none; /* Esconde as barras */
-        }
-
-        .menu-toggle.active .icon-close {
-            display: block; /* Mostra o 'X' */
-        }
-        /* --- FIM DAS NOVAS REGRAS --- */
-
-        .menu-toggle:hover {
-            color: #ff9b33; /* Laranja mais claro no hover */
-        }
-
-        /* Hero Banner, Sobre Nós, Fatos Rápidos, Serviços, Contato (Estilos Omitidos para Concisão - Mantidos Originais) */
-        .hero { position: relative; width: 100%; height: 100vh; overflow: hidden; }
-        .banner-container { position: relative; width: 100%; height: 100%; }
-        .banner-image { width: 100%; height: 100%; object-fit: cover; animation: zoomBanner 12s ease-in-out infinite; }
-        @keyframes zoomBanner { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
-        .banner-text {
-            position: absolute;
-            top: 40%; left: 0; right: 0;
-            margin: 0 auto;
-            width: 100%; max-width: 1400px;
-            padding: 0 20px;
-            transform: translateY(-50%);
-            color: var(--color-text-light);
-            z-index: 1;
-            opacity: 0;
-            animation: fadeInUp 2s ease forwards 0.5s;
-        }
-        .banner-text-content { max-width: 600px; text-align: left;}
-        @keyframes fadeInUp {
-            from { transform: translateY(calc(-50% + 20px)); opacity: 0; }
-            to { transform: translateY(-50%); opacity: 1; }
-        }
-        .banner-text h1 { 
-            font-family: 'Montserrat', sans-serif; 
-            font-size: 3rem; 
-            font-weight: 700; 
-            margin-bottom: 15px; 
-        }
-        .banner-text p { font-size: 1.5rem; margin-bottom: 20px; }
-        .banner-container::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.4);
-            z-index: 0;
-        }
-        
-        /* --- NOVO: Estilo para o Efeito de Escrita --- */
-        .typing-text-wrapper {
-            display: flex; /* Para centralizar o cursor */
-            align-items: center;
-            justify-content: flex-start; /* Alinha o texto à esquerda dentro do wrapper */
-            margin-bottom: 15px; /* Mantém o espaçamento original do h1 */
-        }
-
-        /* O cursor piscante */
-        .typing-text-wrapper::after {
-            content: '|';
-            display: inline-block;
-            color: var(--color-secondary);
-            font-size: 3rem; /* Tamanho do cursor igual ao h1 */
-            font-weight: 700;
-            margin-left: 5px;
-            animation: blinkCursor 0.7s infinite step-start;
-        }
-
-        @keyframes blinkCursor {
-            50% { opacity: 0; }
-        }
-        /* --- FIM: Estilo para o Efeito de Escrita --- */
-
-        /* --- ANIMAÇÕES SUTIS DE APARECIMENTO (FADE-IN) --- */
-        
-        /* Estilo inicial: Escondido e ligeiramente abaixo */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        /* Estilo final: Visível e na posição original */
-        .animate-on-scroll.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Atrasos para os elementos internos das seções */
-        .about-content-text, .proof-item, .service-card, .contact-content, .feedback-card { 
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .proof-item:nth-child(1) { transition-delay: 0.1s; }
-        .proof-item:nth-child(2) { transition-delay: 0.2s; }
-        .proof-item:nth-child(3) { transition-delay: 0.3s; }
-        .proof-item:nth-child(4) { transition-delay: 0.4s; }
-
-        .service-card:nth-child(1) { transition-delay: 0.1s; }
-        .service-card:nth-child(2) { transition-delay: 0.2s; }
-        .service-card:nth-child(3) { transition-delay: 0.3s; }
-
-        /* Efeito no rodapé: Ícones das redes sociais */
-        .social-links a {
-            transition: all 0.3s ease, transform 0.5s ease; /* Adiciona transform na transição padrão */
-        }
-        .social-links a.is-visible {
-             /* Pequeno efeito de "pop" ao aparecer */
-            animation: popIn 0.6s ease forwards;
-        }
-        
-        @keyframes popIn {
-            0% { transform: scale(0.5); opacity: 0; }
-            70% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(1); }
-        }
-        /* Atrasos individuais para os ícones sociais no rodapé */
-        .social-links a:nth-child(1) { animation-delay: 0.1s; }
-        .social-links a:nth-child(2) { animation-delay: 0.2s; }
-        .social-links a:nth-child(3) { animation-delay: 0.3s; }
-        /* --- FIM DAS ANIMAÇÕES SUTIS --- */
-
-        .about-us-reimagined { 
-            padding: 120px 0; 
-            background-color: rgb(255, 255, 255); 
-            overflow: hidden; 
-        }
-
-        .about-content-wrapper { 
-            display: flex; 
-            
-            align-items: left; /* Alinha verticalmente */
-            justify-content: center;
-            max-width: 900px; /* Largura ajustada para o texto */
-            
-        }
-
-        .about-content-text { 
-            background-color: rgb(255, 255, 255);
-            padding: 0px; /* Padding para o conteúdo do texto */
-            border-radius: 16px;
-            
-            width: 100%;
-            opacity: 0;
-            transform: translateY(20px); 
-            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
-        }
-
-        .about-content-text.is-visible {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .section-tagline { 
-            display: block; 
-            font-family: 'Montserrat', sans-serif; 
-            font-weight: 700; 
-            color: var(--color-secondary); 
-            margin-bottom: 10px; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            font-size: 1rem; 
-        }
-
-        .about-content-text .section-title { 
-            font-family: 'Montserrat', sans-serif; 
-            font-size: 44px; 
-            line-height: 1.2; 
-            color: var(--color-primary); 
-            margin-bottom: 25px; 
-        }
-
-        .about-content-text p { 
-            margin-bottom: 30px; 
-            font-size: 1.05rem; 
-            color: #000000; 
-            line-height: 1.7; 
-        }
-
-        .values-list { 
-            list-style: none; 
-            padding: 0; 
-            margin-top: 25px; 
-            margin-bottom: 40px; 
-        }
-        .values-list li { 
-            display: flex; 
-            align-items: flex-start; 
-            gap: 20px; 
-            margin-bottom: 20px; 
-        }
-        .value-icon { 
-            flex-shrink: 0; 
-            width: 55px; 
-            height: 55px; 
-            background-color: rgba(255, 127, 0, 0.1); 
-            color: var(--color-secondary); 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content:center; 
-            font-size: 24px; 
-            transition: all 0.3s ease; 
-        }
-        .values-list li:hover .value-icon { 
-            background-color: var(--color-primary); 
-            color: var(--color-text-light); 
-            transform: scale(1.1); 
-        }
-        .value-text h3 { 
-            font-family: 'Montserrat', sans-serif; 
-            font-size: 1.2rem; 
-            color: var(--color-primary); 
-            margin-bottom: 5px; 
-        }
-        .value-text p { 
-            margin-bottom: 0; 
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 0.95rem; 
-            line-height: 1.6; 
-            color: #000000; 
-        }
-        /* -------------------------------------------------------------------------- */
-        /* 🌟 FIM DA SEÇÃO "SOBRE NÓS" (NOVO DESIGN - SEM IMAGEM) 🌟 */
-        /* -------------------------------------------------------------------------- */
-
-
-        /* -------------------------------------------------------------------------- */
-        /* 🌟 SEÇÃO "SOBRE NÓS" - NOVO LAYOUT INSTITUCIONAL (2 COLUNAS) 🌟 */
-        /* -------------------------------------------------------------------------- */
-        @media (min-width: 993px) { 
-            .about-content-wrapper.about-institutional-grid {
-                display: grid;
-                grid-template-columns: 1.5fr 1fr; /* Primeira coluna maior para o texto principal */
-                gap: 80px;
-                max-width: 1200px; /* Expande um pouco mais */
-                align-items: flex-start; /* Alinha o conteúdo ao topo */
-                justify-content: center;
-            }
-
-            .about-intro-column {
-                /* Garante que o texto principal fique alinhado */
-                padding-right: 20px;
-            }
-        }
-
-        /* Título da seção de valores */
-        .about-values-column {
-            background-color: var(--color-background-light); /* Fundo claro para o bloco de valores */
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border-left: 5px solid var(--color-primary); /* Destaque institucional */
-            /* Garante animação se estiver no desktop/tablet, no mobile o CSS de media query abaixo já lida */
-            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
-        }
-
-        .about-values-column .values-title {
-            font-family: 'Montserrat', sans-serif; 
-            font-size: 1.4rem; 
-            color: var(--color-primary); 
-            margin-bottom: 25px; 
-            padding-bottom: 10px;
-            border-bottom: 1px dashed #eee;
-        }
-
-        /* Ajuste dos ícones de valor */
-        .about-values-column .value-icon { 
-            flex-shrink: 0;
-            width: 45px; /* Ícone um pouco menor */
-            height: 45px; 
-            font-size: 20px; 
-            background-color: var(--color-primary); /* Cor primária */
-            color: var(--color-text-light);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            border-radius: 50%;
-        }
-
-        .about-values-column .values-list li:hover .value-icon { 
-            background-color: var(--color-secondary); /* Hover laranja */
-            transform: scale(1.05); /* Efeito de hover mais sutil */
-        }
-
-        /* Responsividade para tablets/mobile */
-        @media (max-width: 992px) {
-            .about-content-wrapper.about-institutional-grid {
-                display: flex; /* Volta ao flex para empilhar */
-                flex-direction: column;
-                gap: 40px;
-            }
-            .about-intro-column, .about-values-column {
-                max-width: 100%;
-            }
-
-            /* Sobrescreve a regra original de responsividade para garantir que a coluna de texto principal se ajuste */
-            .about-content-text {
-                 max-width: 100%; 
-                 text-align: justify;
-                 transform: translateY(0); 
-                 transition: none; 
-                 opacity: 1;
-            }
-        }
-        /* -------------------------------------------------------------------------- */
-        /* 🌟 FIM DO NOVO LAYOUT INSTITUCIONAL 🌟 */
-        /* -------------------------------------------------------------------------- */
-
-
-        /* SEÇÃO DE FATOS RÁPIDOS */
-        .proof-points { padding: 80px 0; background-color: var(--color-primary); color: var(--color-text-light); text-align: center; }
-        .proof-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-            gap: 40px; 
-            margin: 0;
-            position: relative; 
-        }
-
-        .proof-grid::after {
-            content: ''; 
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 100%;
-            height: 100%; 
-            pointer-events: none; 
-            z-index: 0;
-            background: repeating-linear-gradient(
-                to right,
-                transparent 33.33%, 
-                var(--color-secondary) 33.33%, 
-                var(--color-secondary) 33.53%, 
-                transparent 33.53%, 
-                transparent 66.66%, 
-                var(--color-secondary) 66.66%, 
-                var(--color-secondary) 66.86%, 
-                transparent 66.86% 
-            );
-            background-size: 100% 70%; 
-            background-repeat: no-repeat;
-            background-position: center center;
-        }
-        
-        .proof-item {
-            position: relative;
-            z-index: 1; 
-        }
-        
-        .proof-item h3 { font-family: 'Montserrat', sans-serif; font-size: 3.5rem; font-weight: 700; color: var(--color-secondary); margin-bottom: 5px; line-height: 1; }
-        .proof-item p { font-size: 1.1rem; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; color: rgba(255, 255, 255, 0.9); }
-
-        /* Seção de Serviços */
-        .services { padding: 100px 0; background: #fff;}
-        .services .section-title { font-family: 'Montserrat', sans-serif; font-size: 35px; margin-bottom: 10px; color: var(--color-primary); text-align: center; }
-        .services .section-subtitle { font-size: 1.1rem; color: #666; margin-bottom: 60px; max-width: 700px; margin-left: auto; margin-right: auto; text-align: center; }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
-        .service-card { background: #fff; border: 1px solid #eee; border-radius: 16px; padding: 40px 25px; transition: all 0.4s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; }
-
-        .icon-wrapper { width: 80px; height: 80px; margin: 0 auto 25px; background: rgba(10, 79, 33, 0.08); color: var(--color-primary); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 36px; transition: all 0.4s ease; }
-        
-        .service-card h3 { font-family: 'Montserrat', sans-serif; font-size: 22px; color: var(--color-primary); margin-bottom: 15px; }
-        .service-card p { font-size: 0.95rem; color: #555; line-height: 1.5; }
-
-/* Seção de Frota */
-.fleet-section {
-    padding: 100px 0;
-    background-color: var(--color-background-white); /* Fundo branco */
-    text-align: center;
-}
-
-.fleet-section .section-tagline {
-    /* Manter o estilo existente */
-    display: block; 
-    font-family: 'Montserrat', sans-serif; 
-    font-weight: 700; 
-    color: var(--color-secondary); 
-    margin-bottom: 10px; 
-    text-transform: uppercase; 
-    letter-spacing: 1px; 
-    font-size: 1rem; 
-}
-
-.fleet-section .section-title { 
-    font-family: 'Montserrat', sans-serif; 
-    font-size: 35px; 
-    margin-bottom: 10px; 
-    color: var(--color-text-dark); /* Cor mais escura para o título */
-    text-align: center; 
-}
-
-.fleet-section .section-subtitle { 
-    font-size: 1.1rem; 
-    color: #666; 
-    margin-bottom: 60px; 
-    max-width: 700px; 
-    margin-left: auto; 
-    margin-right: auto; 
-    text-align: center; 
-}
-
-.fleet-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.fleet-grid.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.vehicle-card {
-    background: var(--color-background-white);
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    overflow: hidden; /* Para garantir que a imagem fique dentro */
-    text-align: left;
-    border: 1px solid #eee;
-    padding-bottom: 25px;
-}
-
-.vehicle-image-container {
-    position: relative;
-    height: 220px; /* Altura fixa para as imagens */
-    margin-bottom: 20px;
-}
-
-.vehicle-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.capacity-tag {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background-color: var(--color-primary); /* Verde Escuro */
-    color: var(--color-text-light);
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-weight: 700;
-    font-size: 0.85rem;
-    z-index: 10;
-}
-
-.vehicle-card h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.25rem;
-    color: var(--color-text-dark);
-    padding: 0 25px;
-    margin-bottom: 15px;
-}
-
-.features-list {
-    list-style: none;
-    padding: 0 25px;
-}
-
-.features-list li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-    color: #555;
-    font-size: 0.95rem;
-}
-
-.features-list i {
-    color: var(--color-primary); /* Icone verde */
-    font-size: 1rem;
-}
-
-        /* Seção de Feedbacks */
-        .feedbacks {
-            padding: 100px 0;
-            background-color: var(--color-background-light);
-            text-align: center;
-        }
-
-        .feedbacks .section-title {
-            margin-bottom: 20px;
-            color: #138e3c;
-            font-size: 35px;
-            font-family: Montserrat;
-            text-align: center;
-        }
-
-        .feedbacks .section-subtitle {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 60px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Swiper Container */
-        .feedback-grid {
-            max-width: 1200px; /* Limita a largura do carrossel */
-            margin: 0 auto; /* Centraliza */
-            overflow: hidden; /* Importante para o Swiper */
-            position: relative; /* Para as setas de navegação */
-        }
-        
-        .feedback-card {
-            background-color: var(--color-background-white);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-            text-align: left;
-            transition: all 0.3s ease;
-            border: 1px solid #eee;
-        }
-
-       
-
-        .feedback-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .feedback-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 15px;
-            border: 3px solid var(--color-secondary);
-        }
-
-        .feedback-info h4 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem;
-            color: var(--color-primary);
-            margin-bottom: 5px;
-        }
-
-        .feedback-info span {
-            font-size: 0.9rem;
-            color: #777;
-        }
-
-        .feedback-stars {
-            color: var(--color-secondary);
-            margin-bottom: 15px;
-        }
-
-        .feedback-stars i {
-            margin-right: 2px;
-        }
-
-        .feedback-text {
-            font-size: 0.95rem;
-            color: #555;
-            line-height: 1.6;
-        }
-
-        /* Swiper Pagination (pontinhos) */
-        .swiper-pagination {
-            margin-top: 30px; 
-            position: relative; 
-            bottom: 0;
-            left: 0;
-            width: 100%;
-        }
-
-        .swiper-pagination-bullet {
-            background: #ccc;
-            opacity: 1;
-            transition: background 0.3s ease;
-        }
-
-        .swiper-pagination-bullet-active {
-            background: var(--color-secondary);
-        }
-
-        /* Swiper Navigation (setas) - REMOVIDAS/OCULTADAS POR PADRÃO */
-        .swiper-button-next,
-        .swiper-button-prev {
-            display: none; /* Oculta as setas por padrão */
-        }
-
-        /* Seção de Contato e Formulário */
-        .contact-section { padding: 100px 0; background-color: var(--color-background-white); }
-        .contact-content { display: flex; justify-content: space-between; gap: 60px; max-width: 1100px; margin: 0 auto; }
-        .contact-info, .contact-form-wrapper { flex: 1; }
-        .contact-info h2 { font-family: 'Montserrat', sans-serif; font-size: 38px; color: var(--color-primary); margin-bottom: 20px; }
-        .contact-info p { font-size: 1.1rem; margin-bottom: 30px; color: #555; }
-        .contact-details { list-style: none; padding: 0; }
-        .contact-details li { display: flex; align-items: center; margin-bottom: 20px; font-size: 1rem; color: var(--color-text-dark); }
-        .contact-details li i { color: var(--color-secondary); font-size: 20px; margin-right: 15px; width: 25px; text-align: center; }
-        .contact-form { background: var(--color-background-light); padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
-        .contact-form label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--color-primary); font-size: 0.95rem; }
-        .contact-form input[type="text"],
-        .contact-form input[type="email"],
-        .contact-form textarea { width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 6px; font-size: 1rem; transition: border-color 0.3s; }
-        .contact-form input:focus,
-        .contact-form textarea:focus { border-color: var(--color-secondary); outline: none; }
-        .contact-form textarea { resize: vertical; min-height: 120px; }
-        .form-submit-button {
-            background-color: var(--color-primary);
-            color: var(--color-text-light);
-            padding: 12px 30px;
-            border: none;
-            border-radius: 5px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            width: 100%;
-            font-size: 1.1rem;
-        }
-        .form-submit-button:hover { background-color: #083c18; }
-
-        /* Nova seção de Termos de Privacidade */
-        .privacy-terms {
-            margin-top: 30px;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #777;
-        }
-
-        .privacy-terms a {
-            color: var(--color-primary);
-            text-decoration: underline;
-            transition: color 0.3s ease;
-        }
-
-        .privacy-terms a:hover {
-            color: var(--color-secondary);
-        }
-
-
-        /* NOVO RODAPÉ SOFISTICADO/MINIMALISTA */
-        .footer-moderno {
-            background-color: var(--color-dark-footer); 
-            color: var(--color-footer-text);
-            padding: 60px 0 0;
-            font-family: 'Open Sans', sans-serif;
-            font-size: 0.95rem;
-        }
-
-        .footer-grid {
-            display: grid;
-            /* 3 colunas, com a primeira (info) maior para destaque */
-            grid-template-columns: 2fr 1fr 1.5fr; 
-            gap: 40px;
-            padding-bottom: 40px;
-        }
-
-        .footer-moderno h3, 
-        .footer-moderno h4 {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--color-text-light); /* Títulos brancos ou tom claro */
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .footer-moderno h3.logo-text {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .footer-moderno h4 {
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding-bottom: 5px; 
-            border-bottom: 2px solid var(--color-secondary); /* Linha de destaque Laranja */
-            display: inline-block;
-        }
-
-        .col-info .slogan-text {
-            font-size: 1.1rem;
-            line-height: 1.5;
-            margin-bottom: 8px;
-            color: var(--color-text-light);
-        }
-
-        .col-info .description-text {
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        /* Links */
-        .footer-moderno ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-moderno ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-moderno a {
-            color: var(--color-footer-text);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-moderno a:hover {
-            color: var(--color-secondary);
-        }
-
-        /* Contato */
-        .col-contato .contato-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 15px;
-        }
-        
-        .col-contato .contato-item i {
-            font-size: 1rem;
-            margin-right: 10px;
-            color: var(--color-secondary);
-            margin-top: 3px; /* Alinhamento visual */
-        }
-
-        .col-contato .contato-item span {
-            color: var(--color-footer-text);
-        }
-
-        /* Redes Sociais */
-        .social-links {
-            margin-top: 25px;
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-links a {
-            font-size: 1.4rem;
-            width: 35px;
-            height: 35px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            border: 1px solid var(--color-footer-text);
-            color: var(--color-footer-text);
-            transition: all 0.3s;
-        }
-
-        .social-links a:hover {
-            background-color: var(--color-secondary);
-            color: var(--color-dark-footer);
-            border-color: var(--color-secondary);
-            transform: translateY(-2px);
-        }
-
-        /* Direitos Autorais */
-        .footer-copyright {
-            text-align: center;
-            border-top: 1px solid var(--color-footer-border);
-            padding: 20px 0;
-            font-size: 0.8rem;
-            color: white;
-        }
-        
-        /* Responsividade - Geral */
-        @media (max-width: 992px) {
-            .banner-text h1 { font-size: 2.2rem; }
-            .about-content-text .section-title, .feedbacks .section-title, .contact-section .section-title { font-size: 56px; } 
-            .proof-item h3 { font-size: 2.5rem; }
-            .proof-points { padding: 60px 0; }
-            .contact-content {
-                flex-direction: column;
-                gap: 40px;
-            }
-            /* Responsividade Rodapé Médio */
-            .footer-grid {
-                grid-template-columns: 2fr 1fr;
-            }
-            .col-info {
-                grid-column: 1 / -1; 
-            }
-
-            /* Sobre Nós - Layout ajustado para telas médias (sem imagem) */
-            .about-content-wrapper {
-                flex-direction: column;
-                text-align: justify;
-                gap: 40px;
-            }
-            .about-content-text {
-                max-width: 100%; 
-                text-align: justify;
-                transform: translateY(0); 
-                transition: none; 
-                opacity: 1; 
-            }
-
-            /* Para tablets menores, exibe 2 feedbacks */
-            .feedback-grid.swiper-container .swiper-wrapper {
-                display: flex; /* Garante que o swiper continue funcionando como flex */
-            }
-        }
-
-        @media (min-width: 993px) { /* Desktop */
-            .feedback-grid.swiper-container {
-                display: block; /* Volta a ser um bloco para usar grid */
-                overflow: visible; /* Permite que os cards não sejam cortados */
-            }
-
-            .feedback-grid .swiper-wrapper {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr); /* 3 cards lado a lado */
-                gap: 30px; /* Espaçamento entre os cards */
-                transform: none !important; /* Desativa a transformação do Swiper */
-                width: auto !important; /* Desativa a largura do Swiper */
-                align-items: stretch; /* Garante que os cards tenham a mesma altura */
-                justify-content: center;
-            }
-
-            .feedback-grid .swiper-slide {
-                width: auto !important; /* Desativa a largura definida pelo Swiper */
-                flex-shrink: 1; /* Permite que os itens encolham */
-                opacity: 1 !important; /* Garante visibilidade total */
-                display: flex; /* Para centralizar conteúdo se necessário */
-                flex-direction: column;
-                justify-content: space-between;
-                height: auto; /* Permite que a altura seja natural do conteúdo */
-            }
-
-            .feedback-grid .swiper-slide:nth-child(n+4) {
-                display: none; /* Oculta feedbacks a partir do 4º no desktop */
-            }
-
-            .swiper-pagination {
-                display: none; /* Oculta a paginação no desktop */
-            }
-        }
-
-        @media (max-width: 768px) {
-            
-            /* -------------------------------------------------------------------------- */
-            /* 🌟 ESTILOS DE MENU HAMBÚRGUER SOFISTICADO/BONITO 🌟 */
-            /* -------------------------------------------------------------------------- */
-            .nav-menu {
-                position: fixed; 
-                top: 0; 
-                right: -100%; 
-                height: 100vh;
-                width: 70%; 
-                max-width: 350px; 
-                background-color: var(--color-dark-footer); 
-                flex-direction: column; 
-                display: flex; 
-                align-items: flex-start;
-                padding: 80px 30px 20px; 
-                box-shadow: -5px 0 15px rgba(0,0,0,0.5); 
-                transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
-                z-index: 999; 
-                overflow-y: auto; 
-            }
-            
-            body.menu-open::before {
-                content: '';
-                position: fixed;
-                top: 0; left: 0; right: 0; bottom: 0;
-                background: rgba(0, 0, 0, 0.6); 
-                z-index: 998; 
-                opacity: 1;
-                transition: opacity 0.4s ease;
-            }
-            
-            body.menu-open {
-                overflow-y: hidden;
-            }
-
-            .nav-menu.active { 
-                right: 0; 
-            }
-
-            .nav-menu a, .nav-menu .cta-button {
-                width: 100%;
-                padding: 18px 0; 
-                margin: 0;
-                text-align: left;
-                font-weight: 600;
-                font-family: 'Montserrat', sans-serif; 
-                color: var(--color-footer-text); 
-                border-bottom: 1px solid var(--color-footer-border); 
-                transition: background-color 0.3s ease, color 0.3s ease, padding 0.3s ease;
-                
-                /* Remove a animação customizada no Mobile/Tablet, volta ao normal */
-                position: static; 
-            }
-            
-            /* Garante que o pseudo-elemento seja removido no mobile para não atrapalhar a borda */
-            .nav-menu a::after {
-                content: none;
-            }
-
-
-            .nav-menu .cta-button {
-                margin-top: 20px;
-                padding: 15px 20px;
-                text-align: center;
-                border-bottom: none;
-                border-radius: 8px; 
-            }
-            
-            .nav-menu a:not(.cta-button):hover {
-                background-color: rgba(255, 255, 255, 0.05); 
-                color: var(--color-secondary);
-                padding-left: 10px; 
-            }
-
-            .menu-toggle { 
-                display: block; 
-                z-index: 1000; 
-            }
-            /* -------------------------------------------------------------------------- */
-            /* 🌟 FIM DOS ESTILOS DE MENU HAMBÚRGUER 🌟 */
-            /* -------------------------------------------------------------------------- */
-            
-            .proof-grid::after {
-                display: none; 
-            }
-            
-            .proof-item:not(:last-child) {
-                border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
-                padding-bottom: 20px;
-                margin-bottom: 20px;
-            }
-            
-            /* Responsividade Rodapé Pequeno */
-            .footer-grid {
-                grid-template-columns: 1fr; 
-                gap: 30px;
-            }
-            .col-info {
-                grid-column: auto;
-            }
-        }
-        /* --- NOVO ESTILO PARA O LINK "Nossa História" --- */
-
-.story-link {
-    
-    display: inline-flex; /* Para alinhar o texto e o ícone */
-    align-items: center;
-    gap: 8px; /* Espaço entre o texto e a seta */
-    
-    background-color: transparent; /* Remove o fundo */
-    border: none; /* Remove a borda */
-    
-    color: var(--color-primary); /* Cor do texto principal */
-    font-weight: 700;
-    text-decoration: none; /* Remove sublinhado padrão */
-    font-family: 'Montserrat', sans-serif; /* Usar a fonte de destaque */
-    font-size: 1.1rem; /* Um pouco maior que o texto padrão */
-    
-    padding: 10px 0; /* Padding vertical para área de clique */
-    transition: all 0.3s ease;
-}
-
-/* Estilo para a seta */
-.story-link i {
-    font-size: 1rem;
-    color: var(--color-secondary);
-    transition: transform 0.3s ease, color 0.3s ease;
-}
-
-/* Efeito Hover: Destaca a cor e move a seta para a direita */
-.story-link:hover {
-    color: var(--color-secondary); /* Cor de destaque: Laranja */
-    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
-}
-
-.story-link:hover i {
-    transform: translateX(5px); /* Move a seta 5px para a direita */
-    color: var(--color-secondary);
-}
-
-        @media (max-width: 480px) {
-            .banner-text h1 { font-size: 1.6rem; }
-            .banner-text p { font-size: 0.9rem; }
-            .cta-button { padding: 10px 20px; font-size: 0.9rem; }
-            .about-us-reimagined { padding: 80px 0; }
-            .about-content-text { padding: 30px; } 
-            .about-content-text .section-title, .feedbacks .section-title, .contact-section .section-title { font-size: 28px; }
-            .services .section-title { font-size: 32px; }
-            
-            .nav-menu {
-                width: 85%; 
-            }
-            /* Reduzir o espaçamento do carrossel no mobile */
-            .feedback-grid {
-                padding: 0 10px; /* Adiciona um pequeno padding para não colar na borda */
-            }
-        }</style>
-</head>
 <body>
 <header class="header">
     <div class="container header-content-wrapper">
@@ -1208,7 +57,6 @@
 <section id="sobre" class="about-us-reimagined">
     <div class="container">
         <div class="about-content-wrapper about-institutional-grid">
-            
             <div class="about-content-text about-intro-column animate-on-scroll">
                 <span class="section-tagline">Desde 2021</span>
                 <h2 class="section-title">Quem somos?</h2>
@@ -1217,9 +65,8 @@
                 </p>
                 <a href="historia.html" class="story-link">Conheça Nossa História <i class="fas fa-arrow-right"></i></a>
             </div>
-
             <div class="about-values-column animate-on-scroll" style="transition-delay: 0.3s;">
-                <h3 class="values-title">Nossos Valores Fundamentais</h3>
+                <h3 class="values-title">Nossos Valores</h3>
                 <ul class="values-list">
                     <li>
                         <div class="value-icon"><i class="fas fa-shield-alt"></i></div>
@@ -1244,7 +91,6 @@
                     </li>
                 </ul>
             </div>
-            
         </div>
     </div>
 </section>
@@ -1272,29 +118,24 @@
         <p class="section-subtitle animate-on-scroll">Soluções completas em transporte para atender às necessidades do campo, da indústria e dos eventos.</p>
         <div class="services-grid">
             <div class="service-card animate-on-scroll">
-                <div class="icon-wrapper">
-                    <i class="fas fa-people-carry"></i>
-                </div>
+                <div class="icon-wrapper"><i class="fas fa-people-carry"></i></div>
                 <h3>Transporte de Trabalhadores</h3>
-                <p>Logística eficiente para a sua colheita, garantindo que sua equipe chegue com segurança e pontualidade.</p>
+                <p>Realizamos o transporte de trabalhadores sazonais para atender às demandas dos agricultores, especialmente em atividades como carpir plantas daninhas, como capim-amargoso, buva e capim-pé-de-galinha, em lavouras de milho, soja, mandioca, entre outras. Também transportamos equipes para a colheita de mandioca, garantindo agilidade e eficiência nas operações agrícolas.</p>
             </div>
             <div class="service-card animate-on-scroll">
-                <div class="icon-wrapper">
-                    <i class="fas fa-warehouse"></i>
-                </div>
+                <div class="icon-wrapper"><i class="fas fa-warehouse"></i></div>
                 <h3>Fretamento para Cooperativas</h3>
-                <p>Transporte seguro de insumos e produtos, apoiando a produção e a distribuição das cooperativas.</p>
+                <p>Atendemos cooperativas do setor agroindustrial que necessitam do transporte seguro e organizado de seus colaboradores, garantindo suporte eficiente durante as demandas das safras e safrinhas de milho e soja.</p>
             </div>
             <div class="service-card animate-on-scroll">
-                <div class="icon-wrapper">
-                    <i class="fas fa-calendar-alt"></i>
-                </div>
+                <div class="icon-wrapper"><i class="fas fa-calendar-alt"></i></div>
                 <h3>Transporte para Eventos</h3>
-                <p>Serviço dedicado para feiras, exposições e encontros rurais, levando pessoas e materiais com eficiência.</p>
+                <p>Oferecemos soluções em transporte para grupos de pessoas em eventos sociais, corporativos, esportivos e religiosos. Realizamos toda a logística com responsabilidade, pontualidade e atenção aos detalhes, garantindo uma operação eficiente e organizada.</p>
             </div>
         </div>
     </div>
 </section>
+
 <section id="frota" class="fleet-section">
     <div class="container">
         <span class="section-tagline">Nossa Frota</span>
@@ -1302,157 +143,78 @@
         <p class="section-subtitle animate-on-scroll">
             Contamos com uma frota diversificada para atender diferentes necessidades de transporte.
         </p>
-
         <div class="fleet-grid animate-on-scroll">
-
             <div class="vehicle-card">
                 <div class="vehicle-image-container">
-                    <img src="bus1.avif" alt="Micro-ônibus Executivo">
-                    <span class="capacity-tag green-tag">20 passageiros</span>
+                    <img src="veiculo1.jpeg" alt="Micro-ônibus Executivo">
+                    <span class="capacity-tag green-tag">28 passageiros</span>
                 </div>
-                <h3>Micro-ônibus Executivo</h3>
+                <h3>Micro-ônibus </h3>
                 <ul class="features-list">
                     <li><i class="fas fa-check-circle"></i> Ar condicionado</li>
                     <li><i class="fas fa-check-circle"></i> Poltronas reclináveis</li>
                     <li><i class="fas fa-check-circle"></i> Som ambiente</li>
                 </ul>
             </div>
-
             <div class="vehicle-card">
                 <div class="vehicle-image-container">
-                    <img src="bus2.webp" alt="Ônibus Standard">
-                    <span class="capacity-tag green-tag">44 passageiros</span>
+                    <img src="veiculo2.jpeg" alt="">
+                    <span class="capacity-tag green-tag">32 passageiros</span>
                 </div>
-                <h3>Ônibus Standard</h3>
+                <h3>Marcopolo Volare W8</h3>
                 <ul class="features-list">
                     <li><i class="fas fa-check-circle"></i> Ventilação forçada</li>
                     <li><i class="fas fa-check-circle"></i> Assentos confortáveis</li>
                     <li><i class="fas fa-check-circle"></i> Porta-pacotes</li>
                 </ul>
             </div>
-
             <div class="vehicle-card">
                 <div class="vehicle-image-container">
-                    <img src="bus3.jpg" alt="Ônibus Rodoviário">
-                    <span class="capacity-tag green-tag">50 passageiros</span>
+                    <img src="veiculo3.jpeg" alt="">
+                    <span class="capacity-tag green-tag">7 passageiros</span>
                 </div>
-                <h3>Ônibus Rodoviário</h3>
+                <h3>Fiat Doblò </h3>
                 <ul class="features-list">
                     <li><i class="fas fa-check-circle"></i> Ar condicionado</li>
                     <li><i class="fas fa-check-circle"></i> Banheiro</li>
                     <li><i class="fas fa-check-circle"></i> TV/DVD</li>
                 </ul>
             </div>
-
         </div>
     </div>
 </section>
-<section id="feedbacks" class="feedbacks">
-    <div class="container">
-        <h1 class="section-title animate-on-scroll">O que nossos clientes dizem</h1>
-        <p class="section-subtitle animate-on-scroll">A satisfação dos nossos parceiros é o nosso maior combustível. Veja alguns depoimentos:</p>
-        
-        <div class="feedback-grid swiper-container">
-            <div class="swiper-wrapper">
-                
-                <div class="feedback-card swiper-slide animate-on-scroll">
-                    <div class="feedback-header">
-                        <img src="avatar1.png" alt="Avatar Cliente 1" class="feedback-avatar">
-                        <div class="feedback-info">
-                            <h4>Demarco Bittencourt</h4>
-                            <span>Agricultor </span>
-                        </div>
-                    </div>
-                    <div class="feedback-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="feedback-text">
-                        "A Manga Transportes revolucionou a logística da minha fazenda. A pontualidade e o cuidado com a carga são impecáveis. Recomendo a todos!"
-                    </p>
-                </div>
 
-                <div class="feedback-card swiper-slide animate-on-scroll">
-                    <div class="feedback-header">
-                        <img src="avatar2.jpg" alt="Avatar Cliente 2" class="feedback-avatar">
-                        <div class="feedback-info">
-                            <h4>Pedro Filho</h4>
-                            <span>Gerente Cooperativa</span>
-                        </div>
-                    </div>
-                    <div class="feedback-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="feedback-text">
-                        "O serviço de fretamento para a nossa cooperativa é de primeira linha. Os veículos são novos e a gestão de rotas é muito profissional."
-                    </p>
-                </div>
 
-                <div class="feedback-card swiper-slide animate-on-scroll">
-                    <div class="feedback-header">
-                        <img src="avatar3.png" alt="Avatar Cliente 3" class="feedback-avatar">
-                        <div class="feedback-info">
-                            <h4>Mario Santos</h4>
-                            <span>Produtor Rural</span>
-                        </div>
-                    </div>
-                    <div class="feedback-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p class="feedback-text">
-                        "Utilizamos a Manga para o transporte em nossa feira agropecuária. Tudo correu perfeitamente, sem atrasos ou problemas. Excelente parceria!"
-                    </p>
-                </div>
-
-            
-
-            </div>
-            <div class="swiper-pagination"></div>
-
-            </div>
-    </div>
-</section>
 
 <section id="contato" class="contact-section">
     <div class="container">
         <div class="contact-content animate-on-scroll">
             <div class="contact-info">
                 <span class="section-tagline">Fale Conosco</span>
-                <h2 class="section-title">Pronto para levar sua carga ao destino?</h2>
+                <h2 class="section-title">Entre em contato conosco!</h2>
                 <p>
-                    Entre em contato hoje mesmo e descubra como a Manga Transportes pode otimizar a logística do seu negócio no agronegócio. Estamos prontos para te atender!
+                    E descubra como a Manga Transportes pode otimizar a logística do seu negócio no agronegócio. Estamos prontos para te atender!
                 </p>
-
                 <ul class="contact-details">
-                    <li>
-                        <i class="fas fa-phone-alt"></i>
-                        <span>+55 (44) 98438-5432</span>
-                    </li>
-                    <li>
-                        <i class="fas fa-envelope"></i>
-                        <span>mangatransportes@gmail.com.br</span>
-                    </li>
-                   
+                    <li><i class="fas fa-phone-alt"></i><span>+55 (44) 98438-5432</span></li>
+                    <li><i class="fas fa-envelope"></i><span>mangatransportes@gmail.com.br</span></li>
                 </ul>
                 <a href="https://wa.me/5544984385432" target="_blank" class="cta-button">Fale Conosco no WhatsApp</a>
             </div>
-
             <div class="contact-form-wrapper">
-                <form class="contact-form" action="#" method="POST">
+                <form class="contact-form" action="processar-dados.php" method="post" >
                     <label for="name">Seu Nome:</label>
                     <input type="text" id="name" name="name" required>
-
                     <label for="email">Seu Email:</label>
                     <input type="email" id="email" name="email" required>
-
                     <label for="message">Sua Mensagem:</label>
                     <textarea id="message" name="message" required></textarea>
-
                     <button type="submit" class="form-submit-button">Enviar Mensagem</button>
                 </form>
                 <p class="privacy-terms">
                     Ao enviar esta mensagem, você concorda com nossa <a href="politica-privacidade.html" target="_blank">Política de Privacidade</a>.
                 </p>
-                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -1462,16 +224,19 @@
         <div class="footer-grid">
             
             <div class="col-info">
-                <h3 class="logo-text">Manga Transportes</h3>
+                <a href="#inicio">
+                    <img src="logo.png" alt="Manga Transportes" class="footer-logo-img">
+                </a>
+                
                 <p class="slogan-text">Sua carga no campo, entregue com excelência.</p>
                 <p class="description-text">
-                    Líder em soluções logísticas para o agronegócio, garantindo a integridade e a pontualidade do seu produto. Conectamos o produtor ao mercado de forma eficiente.
+                    Líder em soluções logísticas para o agronegócio, garantindo a integridade e a pontualidade do seu produto. Conectamos o produtor ao mercado de forma eficiente e segura.
                 </p>
                 
                 <div class="social-links animate-on-scroll">
-    <a href="https://wa.me/5544984385432" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-    <a href="https://www.instagram.com/mangatransportes/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-</div>
+                    <a href="https://wa.me/5544984385432" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/mangatransportes/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
             </div>
 
             <div class="col-links">
@@ -1480,43 +245,54 @@
                     <li><a href="#inicio">Início</a></li>
                     <li><a href="#sobre">Sobre Nós</a></li>
                     <li><a href="#servicos">Serviços</a></li>
-                    <li><a href="#feedbacks">Feedbacks</a></li>
-                    <li><a href="politica-privacidade.html" target="_blank">Termos de Privacidade</a></li>
+                    <li><a href="#frota">Nossa Frota</a></li>
+                    <li><a href="#contato">Contato</a></li>
                 </ul>
             </div>
 
             <div class="col-contato">
-                <h4>Contato</h4>
+                <h4>Fale Conosco</h4>
+                
                 <div class="contato-item">
                     <i class="fas fa-clock"></i>
-                    <span>Segunda a Sexta: 08:00 - 18:00</span>
+                    <div>
+                        <strong>Horário de Atendimento:</strong>
+                        <span>Segunda a Sexta: 08:00 - 18:00</span>
+                    </div>
                 </div>
+
                 <div class="contato-item">
                     <i class="fas fa-phone-alt"></i>
                     <span>+55 (44) 98438-5432</span>
                 </div>
+                
                 <div class="contato-item">
                     <i class="fas fa-envelope"></i>
                     <span>mangatransportes@gmail.com</span>
                 </div>
+                
                 <div class="contato-item">
                     <i class="fas fa-map-marker-alt"></i>
-                    <span>Brasilândia do Sul - PR, Brasil</span>
+                    <span>R. Damião Albano de Farias, 571<br>Brasilândia do Sul - PR</span>
                 </div>
             </div>
            
         </div>
     </div>
+
     <div class="footer-copyright">
-        &copy; 2025 Manga Transportes. Todos os direitos reservados.
+        <div class="container">
+            &copy; 2025 Manga Transportes. Todos os direitos reservados. CNPJ 44.625.209/0001-16.
+            <a href="politica-privacidade.html" target="_blank">Política de Privacidade</a>
+        </div>
     </div>
 </footer>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <script>
-    // Script para o Menu Hamburguer no Mobile
     document.addEventListener('DOMContentLoaded', function() {
+        // Menu Hamburguer Mobile
         const menuToggle = document.querySelector('.menu-toggle');
         const navMenu = document.querySelector('.nav-menu');
         const body = document.body;
@@ -1525,59 +301,35 @@
         menuToggle.addEventListener('click', function() {
             navMenu.classList.toggle('active');
             body.classList.toggle('menu-open');
-            menuToggle.classList.toggle('active'); // <-- LINHA ADICIONADA
-
-            // Opcional, mas bom para acessibilidade:
+            menuToggle.classList.toggle('active');
             const isMenuOpen = navMenu.classList.contains('active');
-            if (isMenuOpen) {
-                menuToggle.setAttribute('aria-label', 'Fechar menu');
-            } else {
-                menuToggle.setAttribute('aria-label', 'Abrir menu');
-            }
+            menuToggle.setAttribute('aria-label', isMenuOpen ? 'Fechar menu' : 'Abrir menu');
         });
         
-        // Fecha o menu ao clicar em um link
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
                 body.classList.remove('menu-open');
-                menuToggle.classList.remove('active'); // <-- Também remova o active do botão
+                menuToggle.classList.remove('active');
             });
         });
 
-        // Script para Animação de Scroll (Fade-In)
+        // Animação de Scroll (Fade-In)
         const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
-
-        const observerOptions = {
-            root: null, // viewport
-            rootMargin: '0px',
-            threshold: 0.2 // O elemento é considerado visível quando 20% dele estiver no viewport
-        };
-
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.2 };
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    // Para elementos que não devem repetir a animação, descomente a linha abaixo:
-                    // observer.unobserve(entry.target);
                 }
-                // Se quiser que a animação desfaça ao sair da tela, adicione um 'else' aqui:
-                /* else {
-                    entry.target.classList.remove('is-visible');
-                } */
             });
         }, observerOptions);
-
-        elementsToAnimate.forEach(element => {
-            observer.observe(element);
-        });
+        elementsToAnimate.forEach(element => observer.observe(element));
         
-        // --- NOVO: Script para Efeito de Escrita (Typing Effect) ---
+        // Efeito de Escrita (Typing Effect)
         function typeEffect(elementId, text, speed) {
             const element = document.getElementById(elementId);
             let i = 0;
-            
-            // Inicia a função de escrita, garantindo que o elemento exista
             if (element) {
                 function type() {
                     if (i < text.length) {
@@ -1589,71 +341,36 @@
                 type();
             }
         }
-
-        // Inicia o efeito 1 segundo após o DOM carregar
         setTimeout(() => {
-            typeEffect('typing-text', 'Bem-vindo a Manga Transportes!', 70); // 70ms é a velocidade de digitação
+            typeEffect('typing-text', 'Bem-vindo a Manga Transportes!', 70);
         }, 1000);
-        // --- FIM: Script para Efeito de Escrita (Typing Effect) ---
 
-        // Inicialização do Swiper para Feedbacks
+        // Inicialização Swiper
         let feedbackSwiper = null;
-
         function initSwiper() {
-            // Destrói a instância anterior se existir
             if (feedbackSwiper !== null) {
                 feedbackSwiper.destroy(true, true);
                 feedbackSwiper = null;
             }
-
-            // Verifica se está em desktop (maior que 992px)
             if (window.innerWidth >= 993) {
-                // Em desktop, não inicializa o Swiper para manter o layout de grid CSS
-                // Garante que a paginação esteja oculta
                 const pagination = document.querySelector('.swiper-pagination');
                 if (pagination) pagination.style.display = 'none';
                 return; 
             } else {
-                // Em mobile/tablet, garante que a paginação esteja visível
                 const pagination = document.querySelector('.swiper-pagination');
                 if (pagination) pagination.style.display = 'block';
             }
-
-            // Inicializa o Swiper para mobile e tablet
             feedbackSwiper = new Swiper('.feedback-grid', {
-                slidesPerView: 1, 
-                spaceBetween: 30,
-                loop: true,
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                autoplay: {
-                    delay: 5000,
-                    disableOnInteraction: false,
-                },
-                // Navegação (setas) removida conforme solicitado
-                // navigation: { 
-                //     nextEl: '.swiper-button-next',
-                //     prevEl: '.swiper-button-prev',
-                // },
+                slidesPerView: 1, spaceBetween: 30, loop: true,
+                pagination: { el: '.swiper-pagination', clickable: true },
+                autoplay: { delay: 5000, disableOnInteraction: false },
                 breakpoints: {
-                    769: { // 2 cards em telas maiores que 768px (mas ainda não desktop)
-                        slidesPerView: 2,
-                        spaceBetween: 30,
-                    },
-                    480: { // 1 card em telas menores que 480px
-                        slidesPerView: 1,
-                        spaceBetween: 20,
-                    }
+                    769: { slidesPerView: 2, spaceBetween: 30 },
+                    480: { slidesPerView: 1, spaceBetween: 20 }
                 }
             });
         }
-
-        // Inicializa o swiper na carga da página
         initSwiper();
-
-        // Reinicializa o swiper no redimensionamento da janela
         window.addEventListener('resize', initSwiper);
     });
 </script>
