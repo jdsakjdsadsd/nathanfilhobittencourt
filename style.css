@@ -534,13 +534,17 @@
         color: var(--color-secondary);
     }
 
-    /* Responsividade Geral */
-    @media (max-width: 992px) {
-        .banner-text h1 { font-size: 2.2rem; }
-        .about-content-text .section-title, .feedbacks .section-title, .contact-section .section-title { font-size: 56px; } 
-        .proof-item h3 { font-size: 2.5rem; }
-        .proof-points { padding: 60px 0; }
-        .contact-content { flex-direction: column; gap: 40px; }
+   /* Força 1 coluna para Fatos, Serviços e Frota em Tablets e dispositivos menores */
+@media (max-width: 992px) {
+    .proof-grid, 
+    .services-grid, 
+    .fleet-grid {
+        grid-template-columns: 1fr; /* Força uma única coluna */
+        max-width: 600px; /* Opcional: Limita a largura para não ficar muito esticado */
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
         
         /* Responsividade Rodapé */
         .footer-grid { grid-template-columns: 1fr; gap: 30px; }
@@ -549,7 +553,7 @@
         .about-content-wrapper { flex-direction: column; text-align: justify; gap: 40px; }
         .about-content-text { max-width: 100%; text-align: justify; transform: translateY(0); transition: none; opacity: 1; }
         .feedback-grid.swiper-container .swiper-wrapper { display: flex; }
-    }
+    
 
     @media (min-width: 993px) { 
         .feedback-grid.swiper-container { display: block; overflow: visible; }
@@ -590,3 +594,34 @@
         .nav-menu { width: 85%; }
         .feedback-grid { padding: 0 10px; }
     }
+/* Regra para Tablets (iPad Air e similares) e Celulares */
+@media (max-width: 992px) {
+    
+    /* 1. Garante que fique tudo um embaixo do outro */
+    .proof-grid, 
+    .services-grid, 
+    .fleet-grid {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+        margin: 0 auto; /* Centraliza */
+    }
+
+    /* 2. ESTA É A CORREÇÃO DA IMAGEM: Remove as linhas verticais de fundo */
+    .proof-grid::after {
+        display: none; 
+    }
+
+    /* 3. Adiciona espaçamento e uma linha horizontal suave para separar os itens */
+    .proof-item {
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Linha divisória sutil */
+    }
+
+    /* Remove a borda do último item para ficar limpo */
+    .proof-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+}
