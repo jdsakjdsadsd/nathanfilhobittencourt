@@ -116,11 +116,18 @@
         box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
     .cta-button.menu-cta {
-        background-color: var(--color-secondary);
-        color: var(--color-text-light);
+        background-color: var(--color-primary); /* Fundo Verde Escuro */
+        color: white;
+        border: 2px solid var(--color-secondary); /* Borda Laranja */
         padding: 10px 20px;
         margin-left: 10px;
         margin-top: 0;
+    }
+    .cta-button.menu-cta:hover { 
+        background-color: var(--color-primary); /* Mantém o fundo Verde */
+        color: white; /* Mantém a cor do texto branca */
+        transform: none; /* Remove a elevação */
+        box-shadow: none; /* Remove a sombra */
     }
     
     /* Menu Mobile */
@@ -290,41 +297,92 @@
         margin-bottom: 0; font-family: Arial, Helvetica, sans-serif; font-size: 0.95rem; line-height: 1.6; color: #000000; 
     }
 
+    /* ************************************************* */
+    /* ESTILOS GRID DESKTOP PARA POSICIONAMENTO LATERAL */
+    /* ************************************************* */
     @media (min-width: 993px) { 
         .about-content-wrapper.about-institutional-grid {
             display: grid;
-            grid-template-columns: 1.5fr 1fr;
+            grid-template-columns: 1.5fr 1fr; /* Coluna de texto maior que a de imagem */
             gap: 80px;
             max-width: 1200px;
             align-items: flex-start;
             justify-content: center;
+            /* Definir áreas do grid: text1 e text2 (o texto) na primeira coluna, image na segunda */
+            grid-template-areas: 
+                "text1 image"
+                "text2 image"; 
         }
-        .about-intro-column { padding-right: 20px; }
-    }
+        
+        /* Mapeamento das Áreas do Grid */
+        .about-content-text.top-text-block { 
+            padding-right: 20px; 
+            grid-area: text1; 
+        }
+        
+        .about-content-text.bottom-text-block {
+            padding-right: 20px;
+            grid-area: text2; 
+            margin-top: -10px; /* Ajuste para encostar mais no bloco de texto de cima */
+        }
 
-    .about-values-column {
+        /* IMAGEM: Fica na segunda coluna e se estende pelas duas linhas de texto */
+        .founder-image-container-inline {
+            grid-area: image; 
+            align-self: flex-start;
+            margin-top: 0 !important; 
+        }
+    }
+    /* ************************************************* */
+    /* FIM DOS ESTILOS GRID DESKTOP                     */
+    /* ************************************************* */
+
+    /* ESTILOS PARA O BLOCO DA IMAGEM (VÁLIDO PARA MOBILE/DEFAULT FLOW) */
+    .founder-image-container-inline {
         background-color: var(--color-background-light);
         padding: 30px;
         border-radius: 12px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         border-left: 5px solid var(--color-primary);
         transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        /* No mobile/default, a imagem fica depois do texto superior (ordem no HTML) */
+        margin-top: 30px; 
+        margin-bottom: 30px; 
     }
-    .about-values-column .values-title {
-        font-family: 'Montserrat', sans-serif; font-size: 1.4rem; color: var(--color-primary); margin-bottom: 25px; padding-bottom: 10px; border-bottom: 1px dashed #eee;
+    .founder-image-container-inline img {
+        width: 100%;
+        max-width: 450px; /* Maior para o desktop e garante que preencha 100% no mobile */
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        object-fit: cover;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
-    .about-values-column .value-icon { 
-        width: 45px; height: 45px; font-size: 20px; background-color: var(--color-primary); color: var(--color-text-light); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); border-radius: 50%;
+    .founder-image-container-inline p {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        color: var(--color-primary);
+        font-size: 1rem;
+        margin-bottom: 10px;
     }
-    .about-values-column .values-list li:hover .value-icon { 
-        background-color: var(--color-secondary); transform: scale(1.05); 
+    .founder-image-container-inline .role {
+        font-size: 0.9rem;
+        color: #555;
     }
-
+    
     @media (max-width: 992px) {
+        /* No Mobile/Tablet, o container é um Flexbox em coluna. */
         .about-content-wrapper.about-institutional-grid {
-            display: flex; flex-direction: column; gap: 40px;
+            display: flex; 
+            flex-direction: column; 
+            gap: 40px; /* Garante espaçamento entre os 3 blocos */
         }
-        .about-intro-column, .about-values-column { max-width: 100%; }
+        .about-intro-column { max-width: 100%; }
+        /* O about-content-text (top-text e bottom-text) usa o estilo base, sem necessidade de alteração */
         .about-content-text {
             max-width: 100%; text-align: justify; transform: translateY(0); transition: none; opacity: 1;
         }
@@ -346,7 +404,8 @@
 
     /* Serviços */
     .services { padding: 100px 0; background: #fff;}
-    .services .section-title { font-family: 'Montserrat', sans-serif; font-size: 44px; margin-bottom: 10px; color: var(--color-primary); text-align: center; }
+    .services .section-title { font-family: 'Montserrat', sans-serif; font-size: 44px; text-transform: capitalize;
+ margin-bottom: 10px; color: var(--color-primary); text-align: center; }
     .services .section-subtitle { font-size: 1.1rem; color: #666; margin-bottom: 60px; max-width: 700px; margin-left: auto; margin-right: auto; text-align: center; }
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
     .service-card { background: #fff; border: 1px solid #138e3c; border-radius: 16px; padding: 40px 25px; transition: all 0.4s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; }
@@ -356,7 +415,7 @@
 
     /* Frota */
     .fleet-section { padding: 100px 0; background-color: rgb(233, 233, 233); text-align: center; }
-    .fleet-section .section-tagline { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--color-primary); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; font-size: 44px; }
+    .fleet-section .section-tagline { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--color-primary); margin-bottom: 10px; letter-spacing: 1px; font-size: 44px; }
     .fleet-section .section-title { font-family: 'Montserrat', sans-serif; font-size: 35px; margin-bottom: 10px; color: var(--color-text-dark); text-align: center; }
     .fleet-section .section-subtitle { font-size: 1.1rem; color: #666; margin-bottom: 60px; max-width: 700px; margin-left: auto; margin-right: auto; text-align: center; }
     .fleet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
@@ -373,7 +432,8 @@
     
     /* Contato */
     .contact-section { padding: 100px 0; background-color: var(--color-background-white); }
-    .contact-content { display: flex; justify-content: space-between; gap: 60px; max-width: 1100px; margin: 0 auto; }
+    /* REMOVIDO: max-width: 1100px; A largura agora é controlada apenas pelo .container */
+    .contact-content { display: flex; justify-content: space-between; gap: 60px; margin: 0 auto; }
     .contact-info, .contact-form-wrapper { flex: 1; }
     .contact-info h2 { font-family: 'Montserrat', sans-serif; font-size: 38px; color: var(--color-primary); margin-bottom: 20px; }
     .contact-info p { font-size: 1.1rem; margin-bottom: 30px; color: #555; }
@@ -509,10 +569,10 @@
         color: rgba(255, 255, 255, 0.6);
         font-weight: 600;
         margin-left: 10px;
-        text-decoration: none;
+        
     }
     .footer-copyright a:hover {
-        text-decoration: underline;
+        
         color: var(--color-secondary);
     }
 
@@ -571,7 +631,7 @@
     }
 
     @media (max-width: 853px) {
- .nav-menu { position: fixed; top: 0; right: -100%; height: 100vh; width: 70%; max-width: 350px; background-color: var(--color-dark-footer); flex-direction: column; display: flex; align-items: flex-start; padding: 80px 30px 20px; box-shadow: -5px 0 15px rgba(0,0,0,0.5); transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); z-index: 999; overflow-y: auto; }
+    .nav-menu { position: fixed; top: 0; right: -100%; height: 100vh; width: 70%; max-width: 350px; background-color: var(--color-dark-footer); flex-direction: column; display: flex; align-items: flex-start; padding: 80px 30px 20px; box-shadow: -5px 0 15px rgba(0,0,0,0.5); transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); z-index: 999; overflow-y: auto; }
         body.menu-open::before { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.6); z-index: 998; opacity: 1; transition: opacity 0.4s ease; }
         body.menu-open { overflow-y: hidden; }
         .nav-menu.active { right: 0; }
@@ -615,4 +675,30 @@
         .services .section-title { font-size: 32px; }
         .nav-menu { width: 85%; }
         .feedback-grid { padding: 0 10px; }
+    }
+    
+    /* NOVO BLOCO: Garante alinhamento correto em telas maiores */
+    @media (min-width: 854px) {
+        .contact-info {
+            text-align: left; 
+        }
+        .contact-details li {
+            justify-content: flex-start;
+        }
+    }
+
+    @media (max-width: 853px) {
+        .contact-info {
+            text-align: center;
+        }
+
+        .contact-details li {
+            justify-content: center;
+        }
+
+        .contact-info a.cta-button {
+            margin-left: auto;
+            margin-right: auto;
+            display: inline-block;
+        }
     }
