@@ -115,19 +115,27 @@
         transform: translateY(-2px);
         box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
+    /* ALTERAÇÃO 1: Botão todo Verde */
     .cta-button.menu-cta {
         background-color: var(--color-primary); /* Fundo Verde Escuro */
         color: white;
-        border: 2px solid var(--color-secondary); /* Borda Laranja */
+        border: 2px solid var(--color-primary); /* Borda Verde Escuro - ALTERADO */
         padding: 10px 20px;
         margin-left: 10px;
         margin-top: 0;
     }
+    /* ALTERAÇÃO 1: Botão todo Verde (Hover) */
     .cta-button.menu-cta:hover { 
         background-color: var(--color-primary); /* Mantém o fundo Verde */
         color: white; /* Mantém a cor do texto branca */
+        border-color: var(--color-primary); /* Garante borda verde no hover - ADICIONADO */
         transform: none; /* Remove a elevação */
         box-shadow: none; /* Remove a sombra */
+    }
+    
+    /* ALTERAÇÃO 2: Remove o efeito de sublinhado (linha laranja) */
+    .nav-menu a.cta-button.menu-cta::after {
+        content: none;
     }
     
     /* Menu Mobile */
@@ -329,8 +337,20 @@
         /* IMAGEM: Fica na segunda coluna e se estende pelas duas linhas de texto */
         .founder-image-container-inline {
             grid-area: image; 
-            align-self: flex-start;
+            align-self: stretch; /* ESTICA O CONTAINER VERTICALMENTE */
+            height: 100%; /* Garante que o container ocupe a altura total da área do grid */
             margin-top: 0 !important; 
+            /* Distribui o espaço entre a imagem e a legenda */
+            justify-content: space-between; 
+        }
+        
+        /* NOVO: Estilos para a imagem ficar mais comprida (toda a altura) */
+        .founder-image-container-inline img {
+            height: 90%; /* A imagem deve ocupar a maior parte da altura (deixando espaço para a legenda) */
+            object-fit: cover; 
+            /* Reduz a margem inferior e permite que a imagem cresça */
+            margin-bottom: 10px; 
+            flex-grow: 1; 
         }
     }
     /* ************************************************* */
@@ -398,9 +418,31 @@
         background: repeating-linear-gradient(to right, transparent 33.33%, var(--color-secondary) 33.33%, var(--color-secondary) 33.53%, transparent 33.53%, transparent 66.66%, var(--color-secondary) 66.66%, var(--color-secondary) 66.86%, transparent 66.86%);
         background-size: 100% 70%; background-repeat: no-repeat; background-position: center center;
     }
-    .proof-item { position: relative; z-index: 1; }
-    .proof-item h3 { font-family: 'Montserrat', sans-serif; font-size: 3.5rem; font-weight: 700; color: var(--color-secondary); margin-bottom: 5px; line-height: 1; }
-    .proof-item p { font-size: 1.1rem; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; color: rgba(255, 255, 255, 0.9); }
+    /* ALTERAÇÃO 3: Alinhamento central para o conteúdo */
+    .proof-item { 
+        position: relative; 
+        z-index: 1; 
+        text-align: center; 
+    }
+    /* ALTERAÇÃO 3: Alinhamento central para o título */
+    .proof-item h3 { 
+        font-family: 'Montserrat', sans-serif; 
+        font-size: 3.5rem; 
+        font-weight: 700; 
+        color: var(--color-secondary); 
+        margin-bottom: 5px; 
+        line-height: 1; 
+        text-align: center;
+    }
+    /* ALTERAÇÃO 3: Alinhamento central para o parágrafo */
+    .proof-item p { 
+        font-size: 1.1rem; 
+        font-weight: 400; 
+        text-transform: uppercase; 
+        letter-spacing: 1px; 
+        color: rgba(255, 255, 255, 0.9); 
+        text-align: center;
+    }
 
     /* Serviços */
     .services { padding: 100px 0; background: #fff;}
@@ -414,10 +456,10 @@
     .service-card p { font-size: 0.95rem; color: #555; line-height: 1.5; }
 
     /* Frota */
-    .fleet-section { padding: 100px 0; background-color: rgb(233, 233, 233); text-align: center; }
-    .fleet-section .section-tagline { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--color-primary); margin-bottom: 10px; letter-spacing: 1px; font-size: 44px; }
+    .fleet-section { padding: 100px 0; background-color:var(--color-primary); text-align: center; }
+    .fleet-section .section-tagline { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--color-secondary); margin-bottom: 10px; letter-spacing: 1px; font-size: 44px; }
     .fleet-section .section-title { font-family: 'Montserrat', sans-serif; font-size: 35px; margin-bottom: 10px; color: var(--color-text-dark); text-align: center; }
-    .fleet-section .section-subtitle { font-size: 1.1rem; color: #666; margin-bottom: 60px; max-width: 700px; margin-left: auto; margin-right: auto; text-align: center; }
+    .fleet-section .section-subtitle { font-size: 1.1rem; color: #ffffff; margin-bottom: 60px; max-width: 700px; margin-left: auto; margin-right: auto; text-align: center; }
     .fleet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
     .fleet-grid.is-visible { opacity: 1; transform: translateY(0); }
     .vehicle-card { background: var(--color-background-white); border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; text-align: left; border: 1px solid #eee; padding-bottom: 25px; }
